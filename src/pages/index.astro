@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="NOLI Paralegal"
+  description="Constituições, alterações societárias, certidões, registros imobiliários e regularizações em todo o Brasil — executados por quem conhece cada órgão, cada exigência e cada prazo."
+>
+  <section class="hero container">
+    <span class="overline">APOIO PARALEGAL · SÃO PAULO</span>
+    <h1>A burocracia da sua empresa, conduzida com precisão.</h1>
+    <p class="hero__text">
+      Constituições, alterações societárias, certidões, registros imobiliários e
+      regularizações em todo o Brasil — executados por quem conhece cada órgão, cada
+      exigência e cada prazo.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--solid" href="/contato">Solicitar proposta</a>
+      <a class="btn" href="/servicos">Conhecer os serviços</a>
+    </div>
+  </section>
+
+  <div class="container hero__end" aria-hidden="true">
+    <div class="ornament"><span></span></div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-6);
+  }
+
+  .hero__end {
+    padding-bottom: var(--space-6);
+  }
+
+  .hero h1 {
+    max-width: 16em;
+    margin-top: var(--space-3);
+  }
+
+  .hero__text {
+    max-width: 38em;
+    margin-top: var(--space-3);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+</style>

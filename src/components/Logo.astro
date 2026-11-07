@@ -1,0 +1,44 @@
+---
+// Logotipo tipográfico provisório: substituir pelo SVG de public/brand/ quando disponível.
+interface Props {
+  variant?: 'navy' | 'ivory';
+}
+
+const { variant = 'navy' } = Astro.props;
+---
+
+<span class:list={['logo', `logo--${variant}`]}>
+  <span class="logo__name">NOLI</span>
+  <span class="logo__sub">PARALEGAL</span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .logo--navy {
+    color: var(--navy);
+  }
+
+  .logo--ivory {
+    color: var(--ivory);
+  }
+
+  .logo__name {
+    font-family: var(--font-title);
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .logo__sub {
+    margin-top: 0.25rem;
+    font-family: var(--font-title);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+  }
+</style>

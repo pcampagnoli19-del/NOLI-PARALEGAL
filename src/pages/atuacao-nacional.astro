@@ -1,41 +1,10 @@
 ---
+import BrazilMap from '../components/BrazilMap.astro';
+import { regions } from '../data/juntas';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const intro =
   'Cada Junta Comercial tem seu sistema, suas exigências e seu ritmo. A experiência acumulada em processos por todo o país permite antecipar o que cada uma vai pedir e protocolar certo da primeira vez.';
-
-const regions = [
-  {
-    name: 'Sudeste',
-    boards: ['JUCESP (SP)', 'JUCERJA (RJ)', 'JUCEMG (MG)', 'JUCEES (ES)'],
-  },
-  {
-    name: 'Sul',
-    boards: ['JUCEPAR (PR)', 'JUCESC (SC)', 'JUCISRS (RS)'],
-  },
-  {
-    name: 'Centro-Oeste',
-    boards: ['JUCIS-DF (DF)', 'JUCEGO (GO)', 'JUCEMAT (MT)'],
-  },
-  {
-    name: 'Norte',
-    boards: ['JUCEPA (PA)'],
-  },
-  {
-    name: 'Nordeste',
-    boards: [
-      'JUCEB (BA)',
-      'JUCEC (CE)',
-      'JUCEPB (PB)',
-      'JUCEMA (MA)',
-      'JUCEPI (PI)',
-      'JUCERN (RN)',
-      'JUCEPE (PE)',
-      'JUCEAL (AL)',
-      'JUCESE (SE)',
-    ],
-  },
-];
 ---
 
 <BaseLayout
@@ -47,6 +16,8 @@ const regions = [
     <h1>Vinte Juntas Comerciais. Um mesmo padrão.</h1>
     <p class="intro">{intro}</p>
 
+    <BrazilMap />
+
     <div class="regions">
       {
         regions.map((region) => (
@@ -54,7 +25,9 @@ const regions = [
             <h2>{region.name}</h2>
             <ul class="boards">
               {region.boards.map((board) => (
-                <li>{board}</li>
+                <li>
+                  {board.name} ({board.uf})
+                </li>
               ))}
             </ul>
           </section>

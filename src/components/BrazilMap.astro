@@ -1,0 +1,208 @@
+---
+import { brazilStates, brazilViewBox } from '../data/brazil-map';
+import { regions } from '../data/juntas';
+
+const boardByUf = new Map(
+  regions.flatMap((region) => region.boards.map((board) => [board.uf, board.name])),
+);
+
+const states = brazilStates.map((state) => ({
+  ...state,
+  board: boardByUf.get(state.uf),
+}));
+const served = states.filter((state) => state.board);
+const onRequest = states.filter((state) => !state.board);
+
+const listNames = (names: string[]) =>
+  `${names.slice(0, -1).join(', ')} e ${names[names.length - 1]}`;
+const onRequestNames = listNames(onRequest.map((state) => state.name));
+---
+
+<figure class="brazil-map">
+  <svg
+    class="brazil-map__svg"
+    viewBox={brazilViewBox}
+    role="img"
+    aria-label={`Mapa do Brasil com os 27 estados. ${served.length} têm Juntas Comerciais com processos já conduzidos. Nos demais, ${onRequestNames}, a disponibilidade é sob consulta.`}
+  >
+    <defs>
+      <pattern
+        id="hatch"
+        width="4200"
+        height="4200"
+        patternUnits="userSpaceOnUse"
+        patternTransform="rotate(45)"
+      >
+        <rect width="4200" height="4200" fill="var(--paper)"></rect>
+        <rect width="900" height="4200" fill="var(--navy)"></rect>
+      </pattern>
+    </defs>
+
+    <g transform="scale(0.01 -0.01)">
+      {
+        onRequest.map((state) => (
+          <path class="state state--request" d={state.d}>
+            <title>{state.name}: disponibilidade sob consulta</title>
+          </path>
+        ))
+      }
+      {
+        served.map((state) => (
+          <path class="state state--served" d={state.d}>
+            <title>
+              {state.name}: {state.board}
+            </title>
+          </path>
+        ))
+      }
+    </g>
+
+    <g class="labels" aria-hidden="true">
+      {
+        states.map((state) => (
+          <text
+            x={state.x}
+            y={state.y}
+            class:list={['label', { 'label--request': !state.board }]}
+          >
+            {state.uf}
+          </text>
+        ))
+      }
+    </g>
+  </svg>
+
+  <figcaption class="brazil-map__legend">
+    <ul>
+      <li>
+        <span class="swatch swatch--served" aria-hidden="true"></span>
+        Juntas Comerciais com processos já conduzidos
+      </li>
+      <li>
+        <svg class="swatch" viewBox="0 0 22 22" aria-hidden="true">
+          <defs>
+            <pattern
+              id="hatch-swatch"
+              width="5"
+              height="5"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <rect width="5" height="5" fill="var(--paper)"></rect>
+              <rect width="1.1" height="5" fill="var(--navy)"></rect>
+            </pattern>
+          </defs>
+          <rect width="22" height="22" fill="url(#hatch-swatch)"></rect>
+        </svg>
+        Demais Juntas Comerciais: disponibilidade sob consulta
+      </li>
+    </ul>
+    <p>
+      Também atendemos processos nas Juntas Comerciais dos demais estados: {onRequestNames}.
+      Nesses casos, a disponibilidade é verificada a cada demanda.
+    </p>
+    <p class="brazil-map__source">Malha territorial: IBGE.</p>
+  </figcaption>
+</figure>
+
+<style>
+  .brazil-map {
+    display: grid;
+    gap: var(--space-4);
+    margin: var(--space-5) 0 0;
+  }
+
+  .brazil-map__svg {
+    width: 100%;
+    max-width: 34rem;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .state {
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .state--served {
+    fill: var(--navy);
+    stroke: var(--ivory);
+    stroke-width: 1px;
+  }
+
+  .state--request {
+    fill: url(#hatch);
+    stroke: var(--navy);
+    stroke-width: 1px;
+  }
+
+  .labels {
+    display: none;
+    pointer-events: none;
+  }
+
+  .label {
+    fill: var(--ivory);
+    font-family: var(--font-title);
+    font-size: 78px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  .label--request {
+    fill: var(--navy);
+    paint-order: stroke;
+    stroke: var(--paper);
+    stroke-width: 24px;
+    stroke-linejoin: round;
+  }
+
+  .brazil-map__legend {
+    display: grid;
+    gap: var(--space-3);
+    align-content: center;
+  }
+
+  .brazil-map__legend ul {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .brazil-map__legend li {
+    display: grid;
+    grid-template-columns: 1.375rem minmax(0, 1fr);
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  .swatch {
+    display: block;
+    width: 1.375rem;
+    height: 1.375rem;
+    border: 1px solid var(--navy);
+  }
+
+  .swatch--served {
+    background: var(--navy);
+  }
+
+  .brazil-map__source {
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+
+  @media (min-width: 40rem) {
+    .labels {
+      display: block;
+    }
+  }
+
+  @media (min-width: 56rem) {
+    .brazil-map {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+  }
+</style>

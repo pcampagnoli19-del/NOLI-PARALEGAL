@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://noliparalegal.com.br/sitemap-index.xml

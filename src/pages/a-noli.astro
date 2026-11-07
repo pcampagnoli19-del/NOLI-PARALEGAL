@@ -1,0 +1,99 @@
+---
+import Credentials from '../components/Credentials.astro';
+import Ornament from '../components/Ornament.astro';
+import RomanList from '../components/RomanList.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const principles = [
+  {
+    numeral: 'I',
+    title: 'Precisão antes de velocidade.',
+    text: 'Um protocolo correto na primeira vez é sempre o caminho mais rápido.',
+  },
+  {
+    numeral: 'II',
+    title: 'Sigilo como regra.',
+    text: 'Dados societários e patrimoniais de clientes não circulam fora do necessário.',
+  },
+  {
+    numeral: 'III',
+    title: 'Clareza com o cliente.',
+    text: 'Prazos realistas, custos informados antes da execução e nenhuma surpresa no meio do caminho.',
+  },
+  {
+    numeral: 'IV',
+    title: 'Conhecimento dos limites.',
+    text: 'Atos privativos de advogado são conduzidos por advogados parceiros. A NOLI cuida de todo o restante, com o mesmo rigor.',
+  },
+];
+---
+
+<BaseLayout
+  title="A NOLI · NOLI Paralegal"
+  description="Conduzimos o expediente societário, cartorial e cadastral do início ao fim: estruturamos a documentação, protocolamos nos órgãos competentes, acompanhamos cada exigência e entregamos o ato concluído."
+>
+  <section class="section container">
+    <span class="overline">A NOLI</span>
+    <h1>Uma banca paralegal dedicada ao que a maioria prefere não fazer.</h1>
+    <div class="prose intro__text">
+      <p>
+        A NOLI Paralegal nasceu da prática. Antes de ser empresa, foi rotina: dezenas de
+        formulários por dia na Junta Comercial e na Receita Federal, exigências a responder,
+        matrículas a localizar, certidões a emitir em todas as esferas. Dessa rotina vieram
+        o método e a convicção de que a burocracia, quando bem conduzida, deixa de ser
+        obstáculo.
+      </p>
+      <p>
+        Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e
+        administrativo a empresas, escritórios de contabilidade e escritórios de advocacia.
+        Conduzimos o expediente societário, cartorial e cadastral do início ao fim:
+        estruturamos a documentação, protocolamos nos órgãos competentes, acompanhamos cada
+        exigência e entregamos o ato concluído.
+      </p>
+    </div>
+  </section>
+
+  <Ornament />
+
+  <section class="section container">
+    <h2 class="section__title section__title--plain">Princípios</h2>
+    <RomanList items={principles} />
+  </section>
+
+  <Ornament />
+
+  <section class="section container">
+    <h2 class="section__title section__title--plain">Quem conduz</h2>
+    <div class="prose founder__text">
+      <p>
+        A NOLI foi fundada por <strong>Pedro Campagnoli</strong>, profissional de operações
+        paralegais com atuação em registros societários em Juntas Comerciais de todo o país,
+        regularização cadastral junto à Receita Federal e às fazendas estaduais e municipais,
+        e direito imobiliário extrajudicial. Pedro é graduando em Direito pela Universidade
+        Presbiteriana Mackenzie.
+      </p>
+    </div>
+  </section>
+
+  <Credentials label="Números" />
+</BaseLayout>
+
+<style>
+  h1 {
+    max-width: 18em;
+    margin-top: var(--space-3);
+  }
+
+  .intro__text {
+    margin-top: var(--space-4);
+  }
+
+  .founder__text {
+    margin-top: var(--space-3);
+  }
+
+  strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+</style>

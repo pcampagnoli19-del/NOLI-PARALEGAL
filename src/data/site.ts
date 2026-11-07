@@ -9,6 +9,9 @@ export const company = {
   whatsapp: '(11) 91196-5390',
   whatsappHref: 'https://wa.me/5511911965390',
   tagline: 'Apoio paralegal com rigor, discrição e precisão.',
+  hours: 'Seg a Sex, 9h às 18h',
+  mapsHref:
+    'https://www.google.com/maps/search/?api=1&query=Avenida+Paulista%2C+1636%2C+S%C3%A3o+Paulo%2C+SP',
 } as const;
 
 export const legalNotice =

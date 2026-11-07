@@ -108,6 +108,32 @@ a {
   transform: none;
 }
 
+.section {
+  padding-block: var(--space-6);
+}
+
+.section__title {
+  max-width: 20em;
+  margin-top: var(--space-3);
+}
+
+.section__title--plain {
+  margin-top: 0;
+}
+
+.prose {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 38em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
 /* Sobretítulo: filete dourado de 1px acima do texto em versaletes */
 .overline {
   display: block;

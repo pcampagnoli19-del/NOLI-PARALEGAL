@@ -29,13 +29,54 @@ export const mainNav: NavLink[] = [
   { label: 'Contato', href: '/contato' },
 ];
 
-export const serviceAreas: NavLink[] = [
-  { label: 'Societário e Juntas Comerciais', href: '/servicos/societario' },
-  { label: 'Imobiliário e Cartórios', href: '/servicos/imobiliario-e-cartorios' },
-  { label: 'Certidões e Regularizações', href: '/servicos/certidoes-e-regularizacoes' },
-  { label: 'Monitoramento Contínuo', href: '/servicos/monitoramento' },
-  { label: 'Atos Extrajudiciais', href: '/servicos/extrajudicial' },
-  { label: 'Documentos Estrangeiros', href: '/servicos/documentos-estrangeiros' },
+export interface ServiceArea extends NavLink {
+  numeral: string;
+  summary: string;
+}
+
+export const serviceAreas: ServiceArea[] = [
+  {
+    numeral: 'I',
+    label: 'Societário e Juntas Comerciais',
+    href: '/servicos/societario',
+    summary: 'Abertura, alteração, transformação e encerramento de empresas.',
+  },
+  {
+    numeral: 'II',
+    label: 'Imobiliário e Cartórios',
+    href: '/servicos/imobiliario-e-cartorios',
+    summary: 'Matrículas, averbações, escrituras e regularização de imóveis.',
+  },
+  {
+    numeral: 'III',
+    label: 'Certidões e Regularizações',
+    href: '/servicos/certidoes-e-regularizacoes',
+    summary: 'Certidões em todas as esferas e saneamento de pendências cadastrais.',
+  },
+  {
+    numeral: 'IV',
+    label: 'Monitoramento Contínuo',
+    href: '/servicos/monitoramento',
+    summary: 'Acompanhamento mensal de certidões, registros e publicações.',
+  },
+  {
+    numeral: 'V',
+    label: 'Atos Extrajudiciais',
+    href: '/servicos/extrajudicial',
+    summary: 'Inventário, divórcio e usucapião extrajudiciais, com advogados parceiros.',
+  },
+  {
+    numeral: 'VI',
+    label: 'Documentos Estrangeiros',
+    href: '/servicos/documentos-estrangeiros',
+    summary: 'Apostilamento, legalização e coordenação de tradução juramentada.',
+  },
+];
+
+export const credentials = [
+  { value: '+4 anos', caption: 'de atuação em processos societários e cartoriais' },
+  { value: '+500 empresas', caption: 'atendidas em todo o país' },
+  { value: '20 Juntas Comerciais', caption: 'com processos já conduzidos' },
 ];
 
 export const institutionalNav: NavLink[] = [

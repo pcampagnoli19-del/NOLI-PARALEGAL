@@ -1,15 +1,36 @@
 ---
+import { services } from '../data/services';
 import { serviceAreas } from '../data/site';
+
+interface Props {
+  examples?: boolean;
+  headingLevel?: 2 | 3;
+}
+
+const { examples = false, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+
+const examplesFor = (href: string) => {
+  const service = services.find((item) => `/servicos/${item.slug}` === href);
+  return service ? service.examples.map((index) => service.items[index]) : [];
+};
 ---
 
 <ul class="service-grid">
   {
     serviceAreas.map((area) => (
       <li>
-        <h3>
+        <Heading class="service-grid__title">
           <span class="numeral">{area.numeral}.</span> {area.label}
-        </h3>
+        </Heading>
         <p>{area.summary}</p>
+        {examples && (
+          <ul class="service-grid__examples">
+            {examplesFor(area.href).map((example) => (
+              <li>{example}</li>
+            ))}
+          </ul>
+        )}
         <a href={area.href} aria-label={`Saiba mais sobre ${area.label}`}>
           Saiba mais
         </a>
@@ -25,7 +46,7 @@ import { serviceAreas } from '../data/site';
     margin-top: var(--space-5);
   }
 
-  li {
+  .service-grid > li {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
@@ -35,12 +56,26 @@ import { serviceAreas } from '../data/site';
     background: var(--paper);
   }
 
+  .service-grid__title {
+    font-size: var(--text-h3);
+    letter-spacing: 0;
+  }
+
   .numeral {
     display: block;
     margin-bottom: var(--space-1);
     color: var(--gold-text);
     font-size: 1.25rem;
     letter-spacing: 0.06em;
+  }
+
+  .service-grid__examples {
+    display: grid;
+    gap: var(--space-1);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--rule);
+    font-size: 1.0625rem;
+    line-height: 1.45;
   }
 
   a {

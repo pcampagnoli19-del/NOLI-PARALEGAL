@@ -43,7 +43,7 @@ export const regions: Region[] = [
     boards: [
       { name: 'JUCEB', uf: 'BA' },
       { name: 'JUCEC', uf: 'CE' },
-      { name: 'JUCEPB', uf: 'PB' },
+      { name: 'JUCEP', uf: 'PB' },
       { name: 'JUCEMA', uf: 'MA' },
       { name: 'JUCEPI', uf: 'PI' },
       { name: 'JUCERN', uf: 'RN' },

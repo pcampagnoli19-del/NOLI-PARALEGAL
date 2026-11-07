@@ -264,7 +264,7 @@ Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e adm
   - **Sul:** JUCEPAR (PR) · JUCESC (SC) · JUCISRS (RS)
   - **Centro-Oeste:** JUCIS-DF (DF) · JUCEGO (GO) · JUCEMAT (MT)
   - **Norte:** JUCEPA (PA)
-  - **Nordeste:** JUCEB (BA) · JUCEC (CE) · JUCEPB (PB) · JUCEMA (MA) · JUCEPI (PI) · JUCERN (RN) · JUCEPE (PE) · JUCEAL (AL) · JUCESE (SE)
+  - **Nordeste:** JUCEB (BA) · JUCEC (CE) · JUCEP (PB) · JUCEMA (MA) · JUCEPI (PI) · JUCERN (RN) · JUCEPE (PE) · JUCEAL (AL) · JUCESE (SE)
 - [Pedro: confirmar as siglas oficiais das Juntas do Nordeste incluídas: MA, PI, RN, PE, AL, SE]
 - Mapa do Brasil com os 27 estados: os 20 da lista em navy e os demais em hachura. Sem cores vivas. Malha territorial: IBGE.
 - Legenda: "Juntas Comerciais com processos já conduzidos" e "Demais Juntas Comerciais: disponibilidade sob consulta".

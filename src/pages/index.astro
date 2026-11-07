@@ -1,0 +1,175 @@
+---
+import Credentials from '../components/Credentials.astro';
+import Ornament from '../components/Ornament.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import { company } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pillars = [
+  {
+    title: 'Precisão documental',
+    text: 'Cada ato é conferido contra contrato social, cadastro na Receita e exigências do órgão antes do protocolo.',
+  },
+  {
+    title: 'Domínio dos órgãos',
+    text: 'Juntas Comerciais, Receita Federal, prefeituras, cartórios e secretarias da Fazenda, cada um com suas particularidades.',
+  },
+  {
+    title: 'Discrição',
+    text: 'Informações societárias e patrimoniais tratadas com sigilo e em conformidade com a LGPD.',
+  },
+  {
+    title: 'Prestação de contas',
+    text: 'O cliente sabe, a cada etapa, o que foi protocolado, o que está em análise e o que falta.',
+  },
+];
+
+const audiences = [
+  'Escritórios de contabilidade com carteiras de clientes empresariais',
+  'Escritórios de advocacia que delegam o expediente paralegal',
+  'Departamentos jurídicos e societários de empresas',
+  'Empresários e sócios que precisam constituir, alterar ou regularizar sua empresa',
+  'Proprietários e herdeiros em processos de regularização imobiliária',
+];
+---
+
+<BaseLayout
+  title="NOLI Paralegal · Apoio paralegal em São Paulo"
+  description="Constituições, alterações societárias, certidões, registros imobiliários e regularizações em todo o Brasil."
+>
+  <section class="hero container">
+    <span class="overline">APOIO PARALEGAL · SÃO PAULO</span>
+    <h1>A burocracia da sua empresa, conduzida com precisão.</h1>
+    <p class="hero__text">
+      Constituições, alterações societárias, certidões, registros imobiliários e
+      regularizações em todo o Brasil — executados por quem conhece cada órgão, cada
+      exigência e cada prazo.
+    </p>
+    <div class="actions">
+      <a class="btn btn--solid" href="/contato">Solicitar proposta</a>
+      <a class="btn" href="/servicos">Conhecer os serviços</a>
+    </div>
+  </section>
+
+  <Credentials label="Credenciais" />
+
+  <section class="section container">
+    <span class="overline">ÁREAS DE ATUAÇÃO</span>
+    <h2 class="section__title">Seis frentes, um mesmo padrão de execução.</h2>
+    <ServiceGrid />
+  </section>
+
+  <Ornament />
+
+  <section class="section container">
+    <span class="overline">O NOSSO PADRÃO</span>
+    <h2 class="section__title">Rigor que não aparece. Resultado que aparece.</h2>
+    <div class="prose standard__text">
+      <p>
+        Processos societários e cartoriais raramente falham por falta de conhecimento
+        jurídico. Falham por um formulário preenchido com um dado divergente, por uma
+        exigência respondida fora do prazo, por uma certidão que venceu na véspera. A NOLI
+        existe para eliminar esse tipo de falha.
+      </p>
+    </div>
+    <ul class="pillars">
+      {
+        pillars.map((pillar) => (
+          <li>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Ornament />
+
+  <section class="section container">
+    <h2 class="section__title section__title--plain">
+      Quem confia o seu expediente à NOLI.
+    </h2>
+    <ul class="audiences">
+      {audiences.map((audience) => <li>{audience}</li>)}
+    </ul>
+  </section>
+
+  <section class="closing">
+    <div class="container">
+      <h2>Tem um processo parado ou um prazo se aproximando?</h2>
+      <p>Descreva a situação. Retornamos com o diagnóstico e uma proposta.</p>
+      <div class="actions">
+        <a class="btn btn--solid" href="/contato">Solicitar proposta</a>
+        <a class="btn" href={company.whatsappHref}>Falar pelo WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-6);
+  }
+
+  .hero h1 {
+    max-width: 16em;
+    margin-top: var(--space-3);
+  }
+
+  .hero__text {
+    max-width: 38em;
+    margin-top: var(--space-3);
+  }
+
+  .standard__text {
+    margin-top: var(--space-3);
+  }
+
+  .pillars {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .pillars li {
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--gold);
+  }
+
+  .pillars p {
+    margin-top: var(--space-1);
+  }
+
+  .audiences {
+    display: grid;
+    gap: 0 var(--space-5);
+    margin-top: var(--space-4);
+  }
+
+  .audiences li {
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .closing {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--rule);
+    background: var(--paper);
+  }
+
+  .closing p {
+    margin-top: var(--space-2);
+  }
+
+  @media (min-width: 48rem) {
+    .pillars,
+    .audiences {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pillars {
+      gap: var(--space-4) var(--space-5);
+    }
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+import BrazilMap from '../components/BrazilMap.astro';
+import { regions } from '../data/juntas';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const intro =
+  'Cada Junta Comercial tem seu sistema, suas exigências e seu ritmo. A experiência acumulada em processos por todo o país permite antecipar o que cada uma vai pedir e protocolar certo da primeira vez.';
+---
+
+<BaseLayout
+  title="Atuação Nacional · NOLI Paralegal"
+  description="Cada Junta Comercial tem seu sistema, suas exigências e seu ritmo."
+>
+  <section class="section container">
+    <span class="overline">ATUAÇÃO NACIONAL</span>
+    <h1>Vinte Juntas Comerciais. Um mesmo padrão.</h1>
+    <p class="intro">{intro}</p>
+
+    <BrazilMap />
+
+    <div class="regions">
+      {
+        regions.map((region) => (
+          <section class="region">
+            <h2>{region.name}</h2>
+            <ul class="boards">
+              {region.boards.map((board) => (
+                <li>
+                  {board.name} ({board.uf})
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    max-width: 18em;
+    margin-top: var(--space-3);
+  }
+
+  .intro {
+    max-width: 38em;
+    margin-top: var(--space-3);
+  }
+
+  .regions {
+    margin-top: var(--space-5);
+    column-gap: var(--space-5);
+  }
+
+  .region {
+    break-inside: avoid;
+    padding-bottom: var(--space-4);
+  }
+
+  .region h2 {
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--gold);
+    font-size: var(--text-h3);
+    letter-spacing: 0;
+  }
+
+  .boards li {
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  @media (min-width: 40rem) {
+    .regions {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .regions {
+      columns: 3;
+    }
+  }
+</style>

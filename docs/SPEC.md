@@ -74,7 +74,7 @@ A sensação deve ser de discrição, solidez e precisão.
 
 ### Logo
 Logo azul-marinho: quadrado com recortes em quarto de círculo + "NOLI" / "PARALEGAL".
-Arquivos em `public/brand/` (pedir ao Pedro o SVG; usar PNG só se não houver vetor).
+Arquivos em `public/brand/`, redesenhados em vetor a partir do logo enviado pelo Pedro.
 Versões necessárias: navy sobre marfim e marfim sobre navy (para o rodapé).
 
 ---
@@ -264,9 +264,11 @@ Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e adm
   - **Sul:** JUCEPAR (PR) · JUCESC (SC) · JUCISRS (RS)
   - **Centro-Oeste:** JUCIS-DF (DF) · JUCEGO (GO) · JUCEMAT (MT)
   - **Norte:** JUCEPA (PA)
-  - **Nordeste:** JUCEB (BA) · JUCEC (CE) · JUCEPB (PB) · JUCEMA (MA) · JUCEPI (PI) · JUCERN (RN) · JUCEPE (PE) · JUCEAL (AL) · JUCESE (SE)
+  - **Nordeste:** JUCEB (BA) · JUCEC (CE) · JUCEP (PB) · JUCEMA (MA) · JUCEPI (PI) · JUCERN (RN) · JUCEPE (PE) · JUCEAL (AL) · JUCESE (SE)
 - [Pedro: confirmar as siglas oficiais das Juntas do Nordeste incluídas: MA, PI, RN, PE, AL, SE]
-- Opcional: mapa do Brasil em traço fino, estados atendidos em navy e demais em marfim. Sem cores vivas.
+- Mapa do Brasil com os 27 estados: os 20 da lista em navy e os demais em hachura. Sem cores vivas. Malha territorial: IBGE.
+- Legenda: "Juntas Comerciais com processos já conduzidos" e "Demais Juntas Comerciais: disponibilidade sob consulta".
+- Nota do mapa: Também atendemos processos nas Juntas Comerciais dos demais estados: Acre, Amapá, Amazonas, Mato Grosso do Sul, Rondônia, Roraima e Tocantins. Nesses casos, a disponibilidade é verificada a cada demanda.
 
 ### 5.11 Como Trabalhamos (`/como-trabalhamos`)
 
@@ -355,7 +357,6 @@ redirecionado para o domínio novo depois que este estiver no ar, para não have
 | 7 | Deploy na Vercel + domínio (§7) | Site no ar em https://noliparalegal.com.br com HTTPS |
 
 ## 9. Pendências a confirmar pelo Pedro
-- Arquivo da logo em SVG
 - Siglas das Juntas do Nordeste
 - Horário de atendimento
 - Foto do fundador (opcional)

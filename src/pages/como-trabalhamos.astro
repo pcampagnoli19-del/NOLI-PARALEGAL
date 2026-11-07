@@ -1,0 +1,94 @@
+---
+import Ornament from '../components/Ornament.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    numeral: 'I',
+    title: 'Diagnóstico',
+    text: 'Entendemos a situação, levantamos a documentação existente e identificamos pendências.',
+  },
+  {
+    numeral: 'II',
+    title: 'Proposta',
+    text: 'Escopo, prazo estimado e custos detalhados, incluindo taxas oficiais, antes de qualquer execução.',
+  },
+  {
+    numeral: 'III',
+    title: 'Estruturação',
+    text: 'Preparamos os atos e formulários e conferimos cada dado contra os registros oficiais.',
+  },
+  {
+    numeral: 'IV',
+    title: 'Revisão',
+    text: 'Quando o ato exige, a documentação passa pela revisão de advogado parceiro.',
+  },
+  {
+    numeral: 'V',
+    title: 'Protocolo e acompanhamento',
+    text: 'Protocolamos, acompanhamos a análise e respondemos às exigências dentro do prazo.',
+  },
+  {
+    numeral: 'VI',
+    title: 'Entrega',
+    text: 'O cliente recebe o ato concluído, os documentos arquivados e um resumo do que foi feito.',
+  },
+];
+
+const engagements = [
+  { title: 'Por ato', text: 'para demandas pontuais' },
+  {
+    title: 'Assinatura mensal',
+    text: 'para carteiras de empresas com expediente recorrente e monitoramento',
+  },
+];
+---
+
+<BaseLayout
+  title="Como Trabalhamos · NOLI Paralegal"
+  description="Cada processo, do diagnóstico à entrega."
+>
+  <section class="section container">
+    <span class="overline">MÉTODO</span>
+    <h1>Cada processo, do diagnóstico à entrega.</h1>
+    <ProcessSteps steps={steps} />
+  </section>
+
+  <Ornament />
+
+  <section class="section container">
+    <h2 class="section__title section__title--plain">Formas de contratação</h2>
+    <ul class="engagements">
+      {
+        engagements.map((item) => (
+          <li>
+            <strong>{item.title}</strong> — {item.text}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    max-width: 18em;
+    margin-top: var(--space-3);
+  }
+
+  .engagements {
+    max-width: 44em;
+    margin-top: var(--space-3);
+  }
+
+  .engagements li {
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+</style>

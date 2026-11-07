@@ -1,0 +1,54 @@
+---
+interface Props {
+  items: { numeral: string; title: string; text: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="roman-list">
+  {
+    items.map((item) => (
+      <li>
+        <span class="numeral">{item.numeral}.</span>
+        <p>
+          <strong>{item.title}</strong> {item.text}
+        </p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .roman-list {
+    max-width: 44em;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: var(--space-1);
+    padding-block: var(--space-3);
+    border-top: 1px solid var(--rule);
+  }
+
+  li:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .numeral {
+    color: var(--gold-text);
+    font-family: var(--font-title);
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+</style>

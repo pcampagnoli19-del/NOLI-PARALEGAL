@@ -1,0 +1,43 @@
+:root {
+  /* Cores (SPEC §3) */
+  --navy: #13233f;
+  --navy-deep: #0b1729;
+  --ivory: #f7f3ea;
+  --paper: #fffdf8;
+  --ink: #1e1e1e;
+  --muted: #5b5e66;
+  --gold: #a8894e;
+  --rule: #d9d1bf;
+
+  /* Dourado para texto em fundo claro: --gold reprova no AA sobre marfim (2,98:1) */
+  --gold-text: #7d6432;
+
+  /* Tipografia */
+  --font-title: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-caps: 'Cormorant SC', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+
+  --text-body: clamp(1.125rem, 1.08rem + 0.2vw, 1.25rem);
+  --text-small: 0.9375rem;
+  --text-h1: clamp(2.5rem, 1.9rem + 3vw, 4.25rem);
+  --text-h2: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --text-h3: clamp(1.5rem, 1.4rem + 0.5vw, 1.75rem);
+  --tracking-caps: 0.14em;
+  --leading-body: 1.65;
+  --leading-title: 1.12;
+
+  /* Espaçamento */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4.5rem;
+  --space-7: 7rem;
+
+  /* Estrutura */
+  --container: 72rem;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --radius: 2px;
+  --header-height: 5.5rem;
+}

@@ -1,0 +1,105 @@
+---
+import type { GetStaticPaths } from 'astro';
+import LegalNotice from '../../components/LegalNotice.astro';
+import Ornament from '../../components/Ornament.astro';
+import { services, type Service } from '../../data/services';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() =>
+  services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }))) satisfies GetStaticPaths;
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const description = service.opening.split(/(?<=\.) /)[0];
+const hasComplement = service.detail || service.note || service.closing;
+---
+
+<BaseLayout title={`${service.title} · NOLI Paralegal`} description={description}>
+  <section class="section container">
+    <h1>{service.title}</h1>
+    <p class="opening">{service.opening}</p>
+  </section>
+
+  <Ornament />
+
+  <section class="section container">
+    <h2 class="section__title section__title--plain">{service.listTitle}</h2>
+    <ul class="items">
+      {service.items.map((item) => <li>{item}</li>)}
+    </ul>
+
+    {
+      hasComplement && (
+        <div class="complement">
+          {service.detail && (
+            <p>
+              <strong>{service.detail.label}</strong> {service.detail.text}
+            </p>
+          )}
+          {service.note && <p class="note">{service.note}</p>}
+          {service.closing && <p>{service.closing}</p>}
+        </div>
+      )
+    }
+
+    {
+      service.showLegalNotice && (
+        <div class="notice">
+          <LegalNotice />
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    max-width: 18em;
+  }
+
+  .opening {
+    max-width: 38em;
+    margin-top: var(--space-3);
+  }
+
+  .items {
+    max-width: 44em;
+    margin-top: var(--space-3);
+  }
+
+  .items li {
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .complement {
+    max-width: 38em;
+    margin-top: var(--space-4);
+  }
+
+  .complement strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .note {
+    color: var(--muted);
+    font-size: 1.0625rem;
+    font-style: italic;
+  }
+
+  .notice {
+    max-width: 44em;
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    border: 1px solid var(--rule);
+    border-top: 1px solid var(--gold);
+    background: var(--paper);
+  }
+</style>

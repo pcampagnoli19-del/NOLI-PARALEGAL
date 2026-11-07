@@ -1,0 +1,94 @@
+---
+import { company } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    title: 'Dados coletados',
+    text: 'O formulário de contato coleta nome, empresa ou escritório, e-mail, telefone, área de interesse e o conteúdo da mensagem. O site não solicita dados pessoais sensíveis, e pedimos que eles não sejam incluídos na mensagem.',
+  },
+  {
+    title: 'Finalidade',
+    text: 'Os dados são utilizados para responder à solicitação e elaborar proposta de serviços.',
+  },
+  {
+    title: 'Base legal',
+    text: 'O tratamento se fundamenta na execução de procedimentos preliminares relacionados a contrato, a pedido do titular (art. 7º, V, da LGPD).',
+  },
+  {
+    title: 'Compartilhamento',
+    text: 'As mensagens do formulário são recebidas por meio do Formspree, prestador de serviço que pode armazenar os dados fora do Brasil. As fontes tipográficas do site são carregadas dos servidores do Google (Google Fonts), que recebem o endereço IP do visitante. Os dados não são vendidos nem cedidos a terceiros para fins de publicidade.',
+  },
+  {
+    title: 'Retenção',
+    text: 'Os dados são mantidos por até 12 meses após o último contato, salvo se houver contratação dos serviços ou obrigação legal que exija prazo maior.',
+  },
+  {
+    title: 'Cookies',
+    text: 'Este site não utiliza cookies de rastreamento.',
+  },
+  {
+    title: 'Direitos do titular',
+    text: 'O titular pode solicitar, a qualquer tempo, a confirmação do tratamento, o acesso, a correção, a anonimização, a portabilidade e a eliminação de seus dados, além de informações sobre o compartilhamento, nos termos do art. 18 da LGPD.',
+  },
+];
+---
+
+<BaseLayout
+  title="Política de Privacidade · NOLI Paralegal"
+  description="Como a NOLI Paralegal trata os dados pessoais recebidos por meio deste site, em conformidade com a LGPD."
+>
+  <section class="section container policy">
+    <h1>Política de Privacidade</h1>
+    <p class="policy__intro">
+      Esta política descreve como a {company.name} ({company.legalName}, CNPJ {company.cnpj})
+      trata os dados pessoais recebidos por meio deste site, em conformidade com a Lei Geral
+      de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+    </p>
+
+    {
+      sections.map((section) => (
+        <section>
+          <h2>{section.title}</h2>
+          <p>{section.text}</p>
+        </section>
+      ))
+    }
+
+    <section>
+      <h2>Canal de contato</h2>
+      <p>
+        Solicitações sobre dados pessoais podem ser enviadas para
+        <a href={`mailto:${company.email}`}>{company.email}</a>.
+      </p>
+    </section>
+
+    <p class="policy__date">Última atualização: novembro de 2026.</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .policy > * {
+    max-width: 44rem;
+  }
+
+  .policy__intro {
+    margin-top: var(--space-3);
+  }
+
+  .policy section {
+    margin-top: var(--space-4);
+  }
+
+  .policy h2 {
+    margin-bottom: var(--space-1);
+    font-size: var(--text-h3);
+    letter-spacing: 0;
+  }
+
+  .policy__date {
+    margin-top: var(--space-4);
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+</style>

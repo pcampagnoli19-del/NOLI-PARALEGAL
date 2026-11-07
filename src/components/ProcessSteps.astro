@@ -1,0 +1,65 @@
+---
+interface Props {
+  steps: { numeral: string; title: string; text: string }[];
+}
+
+const { steps } = Astro.props;
+---
+
+<ol class="steps">
+  {
+    steps.map((step) => (
+      <li>
+        <h2>
+          <span class="numeral">{step.numeral}.</span> {step.title}
+        </h2>
+        <p>{step.text}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steps {
+    max-width: 44em;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    border-left: 1px solid var(--gold);
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: var(--space-4);
+  }
+
+  li + li {
+    margin-top: var(--space-4);
+  }
+
+  /* Losango sobre a linha, marcando cada etapa */
+  li::before {
+    content: '';
+    position: absolute;
+    top: 0.75rem;
+    left: -4px;
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  h2 {
+    font-size: var(--text-h3);
+    letter-spacing: 0;
+  }
+
+  .numeral {
+    margin-right: 0.25rem;
+    color: var(--gold-text);
+  }
+
+  p {
+    margin-top: var(--space-1);
+  }
+</style>

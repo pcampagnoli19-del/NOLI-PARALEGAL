@@ -1,0 +1,66 @@
+---
+import { logoPaths } from '../data/logo-paths';
+
+interface Props {
+  variant?: 'navy' | 'ivory';
+  layout?: 'horizontal' | 'stacked';
+}
+
+const { variant = 'navy', layout = 'horizontal' } = Astro.props;
+const { symbol, noli, paralegal } = logoPaths;
+---
+
+{
+  layout === 'horizontal' ? (
+    <svg
+      class:list={['logo', 'logo--horizontal', `logo--${variant}`]}
+      viewBox="-2 -4 560 186"
+      role="img"
+      aria-label="NOLI Paralegal"
+    >
+      <g fill="currentColor" fill-rule="evenodd">
+        <path transform="translate(-60.5 0)" d={symbol} />
+        <path transform="translate(204 -243.1) scale(1.18)" d={noli} />
+        <path transform="translate(83.4 -478.7) scale(1.978)" d={paralegal} />
+      </g>
+    </svg>
+  ) : (
+    <svg
+      class:list={['logo', 'logo--stacked', `logo--${variant}`]}
+      viewBox="-1 -2 300 336"
+      role="img"
+      aria-label="NOLI Paralegal"
+    >
+      <g fill="currentColor" fill-rule="evenodd">
+        <path d={symbol} />
+        <path d={noli} />
+        <path d={paralegal} />
+      </g>
+    </svg>
+  )
+}
+
+<style>
+  .logo--navy {
+    color: var(--navy);
+  }
+
+  .logo--ivory {
+    color: var(--ivory);
+  }
+
+  .logo {
+    max-width: none;
+    flex-shrink: 0;
+  }
+
+  .logo--horizontal {
+    width: calc(3rem * 560 / 186);
+    height: 3rem;
+  }
+
+  .logo--stacked {
+    width: calc(7.5rem * 300 / 336);
+    height: 7.5rem;
+  }
+</style>

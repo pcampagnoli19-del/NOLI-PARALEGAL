@@ -27,7 +27,8 @@ Clássico e de elite, como uma banca tradicional. **Não** pode parecer startup 
 - Todo o conteúdo em português do Brasil, registro formal
 - Acessibilidade: contraste AA, `alt` em imagens, navegação por teclado, HTML semântico
 - SEO: `title` e `meta description` próprios por página, Open Graph, `sitemap.xml`,
-  `robots.txt`, dados estruturados `LegalService`/`LocalBusiness` com endereço e telefone
+  `robots.txt`, dados estruturados `ProfessionalService` (subtipo de `LocalBusiness`; não usar
+  `LegalService`, ver SPEC §6) com endereço e telefone
 - Performance: Lighthouse ≥ 95 em todas as categorias; imagens em AVIF/WebP
 - Responsivo: tudo funciona em 360px de largura
 - **Nunca** use as palavras "advocacia", "advogado da NOLI" ou "consultoria jurídica" para

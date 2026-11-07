@@ -94,11 +94,12 @@ const isCurrent = (href: string) =>
   .site-header__inner {
     display: flex;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-3);
     min-height: var(--header-height);
   }
 
   .site-header__logo {
+    flex-shrink: 0;
     margin-right: auto;
     text-decoration: none;
   }
@@ -109,7 +110,7 @@ const isCurrent = (href: string) =>
 
   .site-nav ul {
     display: flex;
-    gap: var(--space-3);
+    gap: 1.25rem;
   }
 
   .site-nav a,

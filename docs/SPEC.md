@@ -1,4 +1,4 @@
-# Site NOLI Paralegal — Especificação e textos (v1.0)
+# Site NOLI Paralegal — Especificação e textos (v2.0, revisada em 13/11/2026)
 
 > Coloque este arquivo em `docs/SPEC.md` no repositório.
 > Trechos entre [COLCHETES] são informações a confirmar pelo Pedro antes de publicar.
@@ -12,7 +12,7 @@
 | Nome fantasia | NOLI Paralegal |
 | Razão social | P H Afonso Campagnoli, ME |
 | CNPJ | 65.899.091/0001-94 |
-| Endereço | Avenida Paulista, 1636 — São Paulo/SP |
+| Endereço | Avenida Paulista, 1636, São Paulo/SP |
 | E-mail | comercial@noliparalegal.com.br |
 | Telefone (ligações) | (11) 93944-6804 |
 | WhatsApp | (11) 91196-5390 → link `https://wa.me/5511911965390` |
@@ -64,11 +64,14 @@ A sensação deve ser de discrição, solidez e precisão.
 - **Corpo:** EB Garamond 18–20px, entrelinha 1,65. Alternativa se a leitura ficar pesada: Source Serif 4
 - **Números e dados:** algarismos old-style nos textos e lining nos números de destaque
 
+### Revisão v2: sem "cara de IA"
+A v1 usava o visual e o texto que todo gerador de IA entrega para "elegante e clássico". A v2 troca fórmula por conteúdo específico (prazos, setores, foto real da Paulista) e adota uma ideia de design própria: **tabelas com cara de cartório** e o **recorte em quarto de círculo do logo** como elemento recorrente. A lista de proibidos está no `CLAUDE.md`.
+
 ### Elementos
-- Filete dourado de 1px acima dos sobretítulos e entre seções
+- Sem sobretítulos. Títulos de seção marcados com o quarto de círculo do logo, em navy
 - Numeração romana (I, II, III…) nas listas de serviços e nas etapas do processo
-- Ornamento discreto: um pequeno losango ou "§" entre seções, sempre em dourado
-- Fotografia, se houver: preto e branco ou dessaturada (arquitetura da Paulista, livros, papel,
+- Divisor entre seções: filete com um quarto de círculo dourado no centro
+- Fotografia: preto e branco. Hoje, uma vista aérea da Paulista (Wikimedia Commons, ProtoplasmaKid, CC BY-SA 4.0, com crédito e link da licença na legenda) (arquitetura da Paulista, livros, papel,
   mesa de trabalho). Nada de banco de imagens com pessoas sorrindo de terno
 - Botões: retangulares, borda de 1px navy, texto em versaletes; hover inverte para navy cheio
 
@@ -85,11 +88,11 @@ Versões necessárias: navy sobre marfim e marfim sobre navy (para o rodapé).
 No mobile: menu em gaveta, com telefone e WhatsApp visíveis.
 
 **Rodapé (fundo navy-deep, texto marfim):**
-- Logo + frase: *"Apoio paralegal com rigor, discrição e precisão."*
+- Logo + frase: *"Apoio paralegal e administrativo em São Paulo."*
 - Coluna Contato: endereço, e-mail, telefone, WhatsApp
 - Coluna Serviços: links das seis áreas
 - Coluna Institucional: A NOLI · Atuação Nacional · Como Trabalhamos · Política de Privacidade
-- Linha final: *"NOLI Paralegal · P H Afonso Campagnoli, ME · CNPJ 65.899.091/0001-94 · Avenida Paulista, 1636 — São Paulo/SP"*
+- Linha final: *"NOLI Paralegal · P H Afonso Campagnoli, ME · CNPJ 65.899.091/0001-94 · Avenida Paulista, 1636, São Paulo/SP"*
 - Aviso (ver §6), em fonte menor
 
 **Botão flutuante de WhatsApp:** discreto, navy com ícone em marfim, canto inferior direito.
@@ -100,85 +103,51 @@ No mobile: menu em gaveta, com telefone e WhatsApp visíveis.
 
 ### 5.1 Início (`/`)
 
-**Hero**
-- Sobretítulo: APOIO PARALEGAL · SÃO PAULO
-- Título: **A burocracia da sua empresa, conduzida com precisão.**
-- Subtítulo: Constituições, alterações societárias, certidões, registros imobiliários e regularizações em todo o Brasil — executados por quem conhece cada órgão, cada exigência e cada prazo.
-- Botões: [Solicitar proposta] [Conhecer os serviços]
-
-**Faixa de credenciais** (três números com filete dourado entre eles)
-- **+4 anos** · de atuação em processos societários e cartoriais
-- **+500 empresas** · atendidas em todo o país
-- **20 Juntas Comerciais** · com processos já conduzidos
-
-**Seção: O que fazemos**
-- Sobretítulo: ÁREAS DE ATUAÇÃO
-- Título: Seis frentes, um mesmo padrão de execução.
-- Seis blocos com numeração romana, cada um com título, uma linha e link "Saiba mais":
-  - **I. Societário e Juntas Comerciais** — Abertura, alteração, transformação e encerramento de empresas.
-  - **II. Imobiliário e Cartórios** — Matrículas, averbações, escrituras e regularização de imóveis.
-  - **III. Certidões e Regularizações** — Certidões em todas as esferas e saneamento de pendências cadastrais.
-  - **IV. Monitoramento Contínuo** — Acompanhamento mensal de certidões, registros e publicações.
-  - **V. Atos Extrajudiciais** — Inventário, divórcio e usucapião extrajudiciais, com advogados parceiros.
-  - **VI. Documentos Estrangeiros** — Apostilamento, legalização e coordenação de tradução juramentada.
-
-**Seção: Por que a NOLI**
-- Sobretítulo: O NOSSO PADRÃO
-- Título: Rigor que não aparece. Resultado que aparece.
-- Texto: Processos societários e cartoriais raramente falham por falta de conhecimento jurídico. Falham por um formulário preenchido com um dado divergente, por uma exigência respondida fora do prazo, por uma certidão que venceu na véspera. A NOLI existe para eliminar esse tipo de falha.
-- Quatro pilares (título + frase):
-  - **Precisão documental** — Cada ato é conferido contra contrato social, cadastro na Receita e exigências do órgão antes do protocolo.
-  - **Domínio dos órgãos** — Juntas Comerciais, Receita Federal, prefeituras, cartórios e secretarias da Fazenda, cada um com suas particularidades.
-  - **Discrição** — Informações societárias e patrimoniais tratadas com sigilo e em conformidade com a LGPD.
-  - **Prestação de contas** — O cliente sabe, a cada etapa, o que foi protocolado, o que está em análise e o que falta.
-
-**Seção: Para quem**
-- Título: Quem confia o seu expediente à NOLI.
-- Lista em duas colunas:
-  - Escritórios de contabilidade com carteiras de clientes empresariais
-  - Escritórios de advocacia que delegam o expediente paralegal
-  - Departamentos jurídicos e societários de empresas
-  - Empresários e sócios que precisam constituir, alterar ou regularizar sua empresa
-  - Proprietários e herdeiros em processos de regularização imobiliária
-
-**Fecho**
-- Título: Tem um processo parado ou um prazo se aproximando?
-- Texto: Descreva a situação. Retornamos com o diagnóstico e uma proposta.
+**Topo**
+- Título: **Abertura, alteração e regularização de empresas, do protocolo ao registro.**
+- Texto: Cuidamos do processo na Junta Comercial, na Receita Federal, nas prefeituras e nos cartórios. Você acompanha cada etapa e recebe o documento registrado.
 - Botões: [Solicitar proposta] [Falar pelo WhatsApp]
+- Tabela "Prazos médios em São Paulo" (ato · onde · prazo):
+  - Abertura de empresa · JUCESP e Receita Federal · 2 dias
+  - Alteração contratual · JUCESP · 5 dias
+  - Certidão de matrícula de imóvel · Cartório de Registro de Imóveis · 6 horas
+  - Nota: Prazos com a documentação completa. Exigências do órgão podem aumentar o prazo. Em outros estados, os prazos variam.
+
+**Foto da Paulista** em largura total, preto e branco, com crédito.
+
+**O que fazemos:** as seis áreas em tabela (numeral · nome com link · resumo · dois ou três exemplos). Sem cards e sem "Saiba mais".
+
+**Experiência:** A equipe da NOLI tem mais de 5 anos de experiência em processos societários e mais de 100 empresas atendidas, em 20 Juntas Comerciais. Já atendemos gestoras de venture capital, fintechs, empresas de reflorestamento e marcas de consumo. (Link: Ver as Juntas Comerciais em que atuamos)
+- Os números e setores vêm da experiência prévia da equipe. Nunca citar nomes de clientes.
+
+**Para quem:** Atendemos escritórios de contabilidade, escritórios de advocacia que delegam o expediente paralegal, departamentos jurídicos de empresas e empresários que precisam abrir, alterar ou regularizar uma empresa.
+
+**Fecho:** Mande a situação pelo WhatsApp ou pelo formulário. Respondemos em até um dia útil com o que precisa ser feito, o prazo e o custo. Botões: [Solicitar proposta] [Falar pelo WhatsApp]
 
 ---
 
 ### 5.2 A NOLI (`/a-noli`)
 
-- Sobretítulo: A NOLI
-- Título: **Uma banca paralegal dedicada ao que a maioria prefere não fazer.**
+- Título: **Sobre a NOLI**
+- Texto: A NOLI Paralegal cuida do expediente societário, cartorial e cadastral de empresas e escritórios. Fica na Avenida Paulista, em São Paulo, e atende processos em todo o Brasil.
 
-**Texto principal:**
-A NOLI Paralegal nasceu da prática. Antes de ser empresa, foi rotina: dezenas de formulários por dia na Junta Comercial e na Receita Federal, exigências a responder, matrículas a localizar, certidões a emitir em todas as esferas. Dessa rotina vieram o método e a convicção de que a burocracia, quando bem conduzida, deixa de ser obstáculo.
+**Como trabalhamos** (numeração romana)
+- I. Conferimos os dados contra o contrato social e o cadastro na Receita antes de protocolar, para evitar exigência.
+- II. Informamos prazo e custo, com as taxas oficiais, antes de começar.
+- III. Dados de clientes ficam restritos a quem precisa deles para o trabalho.
+- IV. Atos que exigem advogado são feitos por advogados parceiros.
 
-Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e administrativo a empresas, escritórios de contabilidade e escritórios de advocacia. Conduzimos o expediente societário, cartorial e cadastral do início ao fim: estruturamos a documentação, protocolamos nos órgãos competentes, acompanhamos cada exigência e entregamos o ato concluído.
+**Experiência:** o mesmo texto do Início.
 
-**Bloco: Princípios** (numeração romana)
-- **I. Precisão antes de velocidade.** Um protocolo correto na primeira vez é sempre o caminho mais rápido.
-- **II. Sigilo como regra.** Dados societários e patrimoniais de clientes não circulam fora do necessário.
-- **III. Clareza com o cliente.** Prazos realistas, custos informados antes da execução e nenhuma surpresa no meio do caminho.
-- **IV. Conhecimento dos limites.** Atos privativos de advogado são conduzidos por advogados parceiros. A NOLI cuida de todo o restante, com o mesmo rigor.
-
-**Bloco: Fundador**
-- Título: Quem conduz
-- Texto: A NOLI foi fundada por **Pedro Campagnoli**, profissional de operações paralegais com atuação em registros societários em Juntas Comerciais de todo o país, regularização cadastral junto à Receita Federal e às fazendas estaduais e municipais, e direito imobiliário extrajudicial. Pedro é graduando em Direito pela Universidade Presbiteriana Mackenzie.
-- [Opcional: foto do Pedro em preto e branco]
-
-**Bloco: Números** (repetir as credenciais do Início)
+O fundador não aparece no site (nome, foto ou trajetória).
 
 ---
 
 ### 5.3 Serviços — visão geral (`/servicos`)
 
-- Sobretítulo: SERVIÇOS
-- Título: **Do registro da empresa à matrícula do imóvel.**
+- Título: **Serviços**
 - Texto: Atuamos em seis áreas complementares. Cada uma pode ser contratada de forma avulsa, por ato, ou em regime de acompanhamento mensal.
-- Seis blocos (iguais aos do Início, com dois ou três exemplos cada e link para a página da área)
+- As seis áreas em tabela, como no Início
 
 ### 5.4 Societário e Juntas Comerciais (`/servicos/societario`)
 
@@ -256,8 +225,7 @@ Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e adm
 
 ### 5.10 Atuação Nacional (`/atuacao-nacional`)
 
-- Sobretítulo: ATUAÇÃO NACIONAL
-- Título: **Vinte Juntas Comerciais. Um mesmo padrão.**
+- Título: **Juntas Comerciais em que já atuamos**
 - Texto: Cada Junta Comercial tem seu sistema, suas exigências e seu ritmo. A experiência acumulada em processos por todo o país permite antecipar o que cada uma vai pedir e protocolar certo da primeira vez.
 - **Lista (em duas ou três colunas, agrupada por região):**
   - **Sudeste:** JUCESP (SP) · JUCERJA (RJ) · JUCEMG (MG) · JUCEES (ES)
@@ -272,8 +240,7 @@ Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e adm
 
 ### 5.11 Como Trabalhamos (`/como-trabalhamos`)
 
-- Sobretítulo: MÉTODO
-- Título: **Cada processo, do diagnóstico à entrega.**
+- Título: **Como funciona um processo**
 - Etapas (numeração romana, linha vertical dourada ligando as etapas):
   - **I. Diagnóstico** — Entendemos a situação, levantamos a documentação existente e identificamos pendências.
   - **II. Proposta** — Escopo, prazo estimado e custos detalhados, incluindo taxas oficiais, antes de qualquer execução.
@@ -282,8 +249,8 @@ Com sede na Avenida Paulista, em São Paulo, a NOLI presta apoio paralegal e adm
   - **V. Protocolo e acompanhamento** — Protocolamos, acompanhamos a análise e respondemos às exigências dentro do prazo.
   - **VI. Entrega** — O cliente recebe o ato concluído, os documentos arquivados e um resumo do que foi feito.
 - **Formas de contratação:**
-  - **Por ato** — para demandas pontuais
-  - **Assinatura mensal** — para carteiras de empresas com expediente recorrente e monitoramento
+  - **Por ato:** para demandas pontuais
+  - **Assinatura mensal:** para carteiras de empresas com expediente recorrente e monitoramento
 
 ### 5.12 Contato (`/contato`)
 
@@ -359,5 +326,5 @@ redirecionado para o domínio novo depois que este estiver no ar, para não have
 ## 9. Pendências a confirmar pelo Pedro
 - Siglas das Juntas do Nordeste
 - Horário de atendimento
-- Foto do fundador (opcional)
+- Prazos "2 dias" e "5 dias": confirmar se são dias úteis
 - Ferramenta do formulário: Formspree (mais simples) ou Resend (mais controle)

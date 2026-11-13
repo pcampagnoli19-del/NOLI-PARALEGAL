@@ -14,7 +14,23 @@ Clássico e de elite, como uma banca tradicional. **Não** pode parecer startup 
 - Paleta: azul-marinho, marfim e um dourado discreto. Nada de gradiente, neon, glassmorphism
 - Muito espaço em branco, filetes finos, numeração romana, versaletes
 - Sem ilustração 3D, sem ícones coloridos, sem emoji, sem animação chamativa
-- Cantos retos (no máximo 2px de arredondamento)
+- Cantos retos (no máximo 2px de arredondamento). Exceção: o quarto de círculo do logo,
+  usado como elemento gráfico recorrente
+- Também não pode parecer feito por IA. Ideia de design: tabelas com cara de cartório e o
+  quarto de círculo do logo (ver SPEC §3, "Revisão v2")
+
+## Proibidos (cara de IA)
+- Sobretítulo em caixa-alta com filete acima de toda seção
+- Faixa de números ou contadores
+- Grade de cards idênticos com "Saiba mais"
+- Grade de "pilares" ou valores genéricos
+- Frases de efeito com antítese ou paralelismo ("X que não aparece. Y que aparece.")
+- Travessão (—) em texto corrido
+- Artigo antes de possessivo ("o nosso", "o seu")
+- Palavras: soluções, precisão, rigor, excelência, descomplicar, ágil, eficiente, padrão de execução
+- Chamada final em forma de pergunta retórica
+- O fundador não aparece no site (nome, foto, trajetória). Nunca citar nomes de clientes,
+  nem de clientes atendidos pela equipe antes da NOLI
 
 ## Stack
 - Astro (site estático, multipáginas) + TypeScript

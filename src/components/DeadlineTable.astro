@@ -1,0 +1,128 @@
+---
+import { deadlineNote, deadlines } from '../data/site';
+
+interface Props {
+  area?: string;
+}
+
+const { area } = Astro.props;
+const rows = area ? deadlines.filter((item) => item.area === area) : deadlines;
+---
+
+{
+  rows.length > 0 && (
+    <figure class="deadlines">
+      <table>
+        <caption>Prazos médios em São Paulo</caption>
+        <thead>
+          <tr>
+            <th scope="col">Ato</th>
+            <th scope="col">Prazo médio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr>
+              <th scope="row">
+                {row.act}
+                <span class="deadlines__where">{row.where}</span>
+              </th>
+              <td class="lining">{row.time}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <figcaption>{deadlineNote}</figcaption>
+    </figure>
+  )
+}
+
+<style>
+  .deadlines {
+    position: relative;
+    max-width: 40rem;
+    margin: var(--space-4) 0 0;
+    padding: var(--space-3);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+
+  /* Canto em quarto de círculo, como o símbolo do logo */
+  .deadlines::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: var(--navy);
+    border-bottom-left-radius: 100%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  caption {
+    padding-right: 2rem;
+    padding-bottom: var(--space-2);
+    color: var(--navy);
+    font-family: var(--font-title);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    text-align: left;
+  }
+
+  thead th {
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--navy);
+    color: var(--muted);
+    font-family: var(--font-caps);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-align: left;
+  }
+
+  thead th:last-child,
+  td {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  tbody th,
+  td {
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  tbody th {
+    color: var(--ink);
+    font-weight: 500;
+    text-align: left;
+  }
+
+  td {
+    padding-left: var(--space-2);
+    color: var(--navy);
+    font-family: var(--font-title);
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .deadlines__where {
+    display: block;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    font-weight: 400;
+  }
+
+  figcaption {
+    margin-top: var(--space-2);
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+</style>

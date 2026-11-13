@@ -1,104 +1,62 @@
 ---
-import Credentials from '../components/Credentials.astro';
+import DeadlineTable from '../components/DeadlineTable.astro';
 import Ornament from '../components/Ornament.astro';
-import ServiceGrid from '../components/ServiceGrid.astro';
-import { company } from '../data/site';
+import PhotoBand from '../components/PhotoBand.astro';
+import ServiceTable from '../components/ServiceTable.astro';
+import { company, experience } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const pillars = [
-  {
-    title: 'Precisão documental',
-    text: 'Cada ato é conferido contra contrato social, cadastro na Receita e exigências do órgão antes do protocolo.',
-  },
-  {
-    title: 'Domínio dos órgãos',
-    text: 'Juntas Comerciais, Receita Federal, prefeituras, cartórios e secretarias da Fazenda, cada um com suas particularidades.',
-  },
-  {
-    title: 'Discrição',
-    text: 'Informações societárias e patrimoniais tratadas com sigilo e em conformidade com a LGPD.',
-  },
-  {
-    title: 'Prestação de contas',
-    text: 'O cliente sabe, a cada etapa, o que foi protocolado, o que está em análise e o que falta.',
-  },
-];
-
-const audiences = [
-  'Escritórios de contabilidade com carteiras de clientes empresariais',
-  'Escritórios de advocacia que delegam o expediente paralegal',
-  'Departamentos jurídicos e societários de empresas',
-  'Empresários e sócios que precisam constituir, alterar ou regularizar sua empresa',
-  'Proprietários e herdeiros em processos de regularização imobiliária',
-];
 ---
 
 <BaseLayout
   title="NOLI Paralegal · Apoio paralegal em São Paulo"
-  description="Constituições, alterações societárias, certidões, registros imobiliários e regularizações em todo o Brasil."
+  description="Abertura, alteração e regularização de empresas, do protocolo ao registro, na Junta Comercial, na Receita Federal, nas prefeituras e nos cartórios."
 >
   <section class="hero container">
-    <span class="overline">APOIO PARALEGAL · SÃO PAULO</span>
-    <h1>A burocracia da sua empresa, conduzida com precisão.</h1>
+    <h1>Abertura, alteração e regularização de empresas, do protocolo ao registro.</h1>
     <p class="hero__text">
-      Constituições, alterações societárias, certidões, registros imobiliários e
-      regularizações em todo o Brasil — executados por quem conhece cada órgão, cada
-      exigência e cada prazo.
+      Cuidamos do processo na Junta Comercial, na Receita Federal, nas prefeituras e nos
+      cartórios. Você acompanha cada etapa e recebe o documento registrado.
     </p>
     <div class="actions">
       <a class="btn btn--solid" href="/contato">Solicitar proposta</a>
-      <a class="btn" href="/servicos">Conhecer os serviços</a>
+      <a class="btn" href={company.whatsappHref}>Falar pelo WhatsApp</a>
     </div>
+    <DeadlineTable />
   </section>
 
-  <Credentials label="Credenciais" />
+  <PhotoBand />
 
   <section class="section container">
-    <span class="overline">ÁREAS DE ATUAÇÃO</span>
-    <h2 class="section__title">Seis frentes, um mesmo padrão de execução.</h2>
-    <ServiceGrid />
+    <h2 class="section__title">O que fazemos</h2>
+    <ServiceTable examples />
   </section>
 
   <Ornament />
 
-  <section class="section container">
-    <span class="overline">O NOSSO PADRÃO</span>
-    <h2 class="section__title">Rigor que não aparece. Resultado que aparece.</h2>
-    <div class="prose standard__text">
-      <p>
-        Processos societários e cartoriais raramente falham por falta de conhecimento
-        jurídico. Falham por um formulário preenchido com um dado divergente, por uma
-        exigência respondida fora do prazo, por uma certidão que venceu na véspera. A NOLI
-        existe para eliminar esse tipo de falha.
+  <section class="section container split">
+    <div>
+      <h2 class="section__title">Experiência</h2>
+      <p class="split__text">{experience}</p>
+      <p class="split__link">
+        <a href="/atuacao-nacional">Ver as Juntas Comerciais em que atuamos</a>
       </p>
     </div>
-    <ul class="pillars">
-      {
-        pillars.map((pillar) => (
-          <li>
-            <h3>{pillar.title}</h3>
-            <p>{pillar.text}</p>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <Ornament />
-
-  <section class="section container">
-    <h2 class="section__title section__title--plain">
-      Quem confia o seu expediente à NOLI.
-    </h2>
-    <ul class="audiences">
-      {audiences.map((audience) => <li>{audience}</li>)}
-    </ul>
+    <div>
+      <h2 class="section__title">Para quem</h2>
+      <p class="split__text">
+        Atendemos escritórios de contabilidade, escritórios de advocacia que delegam o
+        expediente paralegal, departamentos jurídicos de empresas e empresários que precisam
+        abrir, alterar ou regularizar uma empresa.
+      </p>
+    </div>
   </section>
 
   <section class="closing">
     <div class="container">
-      <h2>Tem um processo parado ou um prazo se aproximando?</h2>
-      <p>Descreva a situação. Retornamos com o diagnóstico e uma proposta.</p>
+      <p class="closing__text">
+        Mande a situação pelo WhatsApp ou pelo formulário. Respondemos em até um dia útil com
+        o que precisa ser feito, o prazo e o custo.
+      </p>
       <div class="actions">
         <a class="btn btn--solid" href="/contato">Solicitar proposta</a>
         <a class="btn" href={company.whatsappHref}>Falar pelo WhatsApp</a>
@@ -109,67 +67,56 @@ const audiences = [
 
 <style>
   .hero {
-    padding-block: var(--space-6);
+    padding-block: var(--space-6) var(--space-5);
   }
 
   .hero h1 {
-    max-width: 16em;
-    margin-top: var(--space-3);
+    max-width: 17em;
   }
 
   .hero__text {
-    max-width: 38em;
+    max-width: 36em;
     margin-top: var(--space-3);
   }
 
-  .standard__text {
+  .split {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .split__text {
+    max-width: 36em;
     margin-top: var(--space-3);
   }
 
-  .pillars {
-    display: grid;
-    gap: var(--space-4);
-    margin-top: var(--space-5);
+  .split__link {
+    margin-top: var(--space-2);
   }
 
-  .pillars li {
-    padding-top: var(--space-2);
-    border-top: 1px solid var(--gold);
-  }
-
-  .pillars p {
-    margin-top: var(--space-1);
-  }
-
-  .audiences {
-    display: grid;
-    gap: 0 var(--space-5);
-    margin-top: var(--space-4);
-  }
-
-  .audiences li {
-    padding-block: var(--space-2);
-    border-bottom: 1px solid var(--rule);
+  .split__link a {
+    color: var(--navy);
+    text-decoration-color: var(--gold);
   }
 
   .closing {
-    padding-block: var(--space-6);
+    padding-block: var(--space-5);
     border-top: 1px solid var(--rule);
     background: var(--paper);
   }
 
-  .closing p {
-    margin-top: var(--space-2);
+  .closing__text {
+    max-width: 36em;
+    color: var(--navy);
+    font-family: var(--font-title);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    line-height: 1.35;
   }
 
-  @media (min-width: 48rem) {
-    .pillars,
-    .audiences {
+  @media (min-width: 56rem) {
+    .split {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .pillars {
-      gap: var(--space-4) var(--space-5);
+      gap: var(--space-6);
     }
   }
 </style>

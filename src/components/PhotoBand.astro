@@ -1,0 +1,52 @@
+---
+const widths = [640, 1024, 1440, 1920];
+const srcset = (format: string) =>
+  widths.map((w) => `/images/paulista-${w}.${format} ${w}w`).join(', ');
+---
+
+<figure class="photo-band">
+  <picture>
+    <source type="image/avif" srcset={srcset('avif')} sizes="100vw" />
+    <source type="image/webp" srcset={srcset('webp')} sizes="100vw" />
+    <img
+      src="/images/paulista-1024.webp"
+      alt="Vista aérea da Avenida Paulista, em São Paulo, em preto e branco"
+      width="1920"
+      height="823"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+  <figcaption class="container">
+    Foto: <a href="https://commons.wikimedia.org/wiki/File:Vista_a%C3%A9rea_de_la_Avenida_Paulista_de_S%C3%A3o_Paulo_08.jpg"
+      >ProtoplasmaKid</a
+    >, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>,
+    adaptada (preto e branco).
+  </figcaption>
+</figure>
+
+<style>
+  .photo-band {
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    background: var(--rule);
+  }
+
+  figcaption {
+    padding-top: var(--space-1);
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 40rem) {
+    img {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

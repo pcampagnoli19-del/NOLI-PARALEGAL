@@ -112,13 +112,29 @@ a {
   padding-block: var(--space-6);
 }
 
-.section__title {
-  max-width: 20em;
-  margin-top: var(--space-3);
+/* Recorte em quarto de círculo, o mesmo do símbolo do logo */
+.qc {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--navy);
+  border-top-right-radius: 100%;
 }
 
-.section__title--plain {
-  margin-top: 0;
+.section__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  max-width: 22em;
+}
+
+.section__title::before {
+  content: '';
+  flex: none;
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--navy);
+  border-top-right-radius: 100%;
 }
 
 .prose {
@@ -134,26 +150,7 @@ a {
   margin-top: var(--space-4);
 }
 
-/* Sobretítulo: filete dourado de 1px acima do texto em versaletes */
-.overline {
-  display: block;
-  font-family: var(--font-caps);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-caps);
-  color: var(--gold-text);
-}
-
-.overline::before {
-  content: '';
-  display: block;
-  width: 3rem;
-  height: 1px;
-  margin-bottom: var(--space-2);
-  background: var(--gold);
-}
-
-/* Ornamento entre seções */
+/* Divisor entre seções, com o quarto de círculo do logo */
 .ornament {
   display: flex;
   align-items: center;
@@ -171,10 +168,10 @@ a {
 }
 
 .ornament span {
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
   background: var(--gold);
-  transform: rotate(45deg);
+  border-top-right-radius: 100%;
 }
 
 .lining {

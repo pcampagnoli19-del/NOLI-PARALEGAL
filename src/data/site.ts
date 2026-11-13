@@ -2,13 +2,13 @@ export const company = {
   name: 'NOLI Paralegal',
   legalName: 'P H Afonso Campagnoli, ME',
   cnpj: '65.899.091/0001-94',
-  address: 'Avenida Paulista, 1636 — São Paulo/SP',
+  address: 'Avenida Paulista, 1636, São Paulo/SP',
   email: 'comercial@noliparalegal.com.br',
   phone: '(11) 93944-6804',
   phoneHref: 'tel:+5511939446804',
   whatsapp: '(11) 91196-5390',
   whatsappHref: 'https://wa.me/5511911965390',
-  tagline: 'Apoio paralegal com rigor, discrição e precisão.',
+  tagline: 'Apoio paralegal e administrativo em São Paulo.',
   hours: 'Seg a Sex, 9h às 18h',
   mapsHref:
     'https://www.google.com/maps/search/?api=1&query=Avenida+Paulista%2C+1636%2C+S%C3%A3o+Paulo%2C+SP',
@@ -76,15 +76,29 @@ export const serviceAreas: ServiceArea[] = [
   },
 ];
 
-export const credentials = [
-  { value: '+4 anos', caption: 'de atuação em processos societários e cartoriais' },
-  { value: '+500 empresas', caption: 'atendidas em todo o país' },
-  { value: '20 Juntas Comerciais', caption: 'com processos já conduzidos' },
-];
-
 export const institutionalNav: NavLink[] = [
   { label: 'A NOLI', href: '/a-noli' },
   { label: 'Atuação Nacional', href: '/atuacao-nacional' },
   { label: 'Como Trabalhamos', href: '/como-trabalhamos' },
   { label: 'Política de Privacidade', href: '/privacidade' },
 ];
+
+export const experience =
+  'A equipe da NOLI tem mais de 5 anos de experiência em processos societários e mais de 100 empresas atendidas, em 20 Juntas Comerciais. Já atendemos gestoras de venture capital, fintechs, empresas de reflorestamento e marcas de consumo.';
+
+export interface Deadline {
+  act: string;
+  where: string;
+  time: string;
+  area: string;
+}
+
+/** Prazos médios em São Paulo, com a documentação completa */
+export const deadlines: Deadline[] = [
+  { act: 'Abertura de empresa', where: 'JUCESP e Receita Federal', time: '2 dias úteis', area: 'societario' },
+  { act: 'Alteração contratual', where: 'JUCESP', time: '5 dias úteis', area: 'societario' },
+  { act: 'Certidão de matrícula de imóvel', where: 'Cartório de Registro de Imóveis', time: '6 horas', area: 'imobiliario-e-cartorios' },
+];
+
+export const deadlineNote =
+  'Prazos com a documentação completa. Exigências do órgão podem aumentar o prazo. Em outros estados, os prazos variam.';

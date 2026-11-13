@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import DeadlineTable from '../../components/DeadlineTable.astro';
 import LegalNotice from '../../components/LegalNotice.astro';
 import Ornament from '../../components/Ornament.astro';
 import { services, type Service } from '../../data/services';
@@ -24,12 +25,13 @@ const hasComplement = service.detail || service.note || service.closing;
   <section class="section container">
     <h1>{service.title}</h1>
     <p class="opening">{service.opening}</p>
+    <DeadlineTable area={service.slug} />
   </section>
 
   <Ornament />
 
   <section class="section container">
-    <h2 class="section__title section__title--plain">{service.listTitle}</h2>
+    <h2 class="section__title">{service.listTitle}</h2>
     <ul class="items">
       {service.items.map((item) => <li>{item}</li>)}
     </ul>

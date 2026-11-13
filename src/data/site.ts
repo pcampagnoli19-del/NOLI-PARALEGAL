@@ -95,8 +95,8 @@ export interface Deadline {
 
 /** Prazos médios em São Paulo, com a documentação completa */
 export const deadlines: Deadline[] = [
-  { act: 'Abertura de empresa', where: 'JUCESP e Receita Federal', time: '2 dias', area: 'societario' },
-  { act: 'Alteração contratual', where: 'JUCESP', time: '5 dias', area: 'societario' },
+  { act: 'Abertura de empresa', where: 'JUCESP e Receita Federal', time: '2 dias úteis', area: 'societario' },
+  { act: 'Alteração contratual', where: 'JUCESP', time: '5 dias úteis', area: 'societario' },
   { act: 'Certidão de matrícula de imóvel', where: 'Cartório de Registro de Imóveis', time: '6 horas', area: 'imobiliario-e-cartorios' },
 ];
 

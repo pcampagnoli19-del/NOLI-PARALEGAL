@@ -108,8 +108,8 @@ No mobile: menu em gaveta, com telefone e WhatsApp visíveis.
 - Texto: Cuidamos do processo na Junta Comercial, na Receita Federal, nas prefeituras e nos cartórios. Você acompanha cada etapa e recebe o documento registrado.
 - Botões: [Solicitar proposta] [Falar pelo WhatsApp]
 - Tabela "Prazos médios em São Paulo" (ato · onde · prazo):
-  - Abertura de empresa · JUCESP e Receita Federal · 2 dias
-  - Alteração contratual · JUCESP · 5 dias
+  - Abertura de empresa · JUCESP e Receita Federal · 2 dias úteis
+  - Alteração contratual · JUCESP · 5 dias úteis
   - Certidão de matrícula de imóvel · Cartório de Registro de Imóveis · 6 horas
   - Nota: Prazos com a documentação completa. Exigências do órgão podem aumentar o prazo. Em outros estados, os prazos variam.
 
@@ -326,5 +326,5 @@ redirecionado para o domínio novo depois que este estiver no ar, para não have
 ## 9. Pendências a confirmar pelo Pedro
 - Siglas das Juntas do Nordeste
 - Horário de atendimento
-- Prazos "2 dias" e "5 dias": confirmar se são dias úteis
+
 - Ferramenta do formulário: Formspree (mais simples) ou Resend (mais controle)

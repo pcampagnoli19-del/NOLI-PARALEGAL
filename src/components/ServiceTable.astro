@@ -1,0 +1,106 @@
+---
+import { services } from '../data/services';
+import { serviceAreas } from '../data/site';
+
+interface Props {
+  examples?: boolean;
+  headingLevel?: 2 | 3;
+}
+
+const { examples = false, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+
+const examplesFor = (href: string) => {
+  const service = services.find((item) => `/servicos/${item.slug}` === href);
+  return service ? service.examples.map((index) => service.items[index]) : [];
+};
+---
+
+<ol class="ledger">
+  {
+    serviceAreas.map((area) => (
+      <li>
+        <span class="ledger__numeral">{area.numeral}</span>
+        <div class="ledger__name">
+          <Heading class="ledger__title">
+            <a href={area.href}>{area.label}</a>
+          </Heading>
+        </div>
+        <div class="ledger__body">
+          <p>{area.summary}</p>
+          {examples && (
+            <ul class="ledger__examples">
+              {examplesFor(area.href).map((example) => (
+                <li>{example}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .ledger {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    border-top: 1px solid var(--navy);
+    list-style: none;
+  }
+
+  .ledger > li {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 0.25rem var(--space-2);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ledger__numeral {
+    grid-row: span 2;
+    color: var(--gold-text);
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ledger__title {
+    font-size: 1.375rem;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+
+  .ledger__title a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+  }
+
+  .ledger__title a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .ledger__examples {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: var(--space-1);
+    padding-left: 1rem;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.45;
+    list-style: square;
+  }
+
+  @media (min-width: 56rem) {
+    .ledger > li {
+      grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 1.6fr);
+      gap: var(--space-4);
+    }
+
+    .ledger__numeral {
+      grid-row: auto;
+    }
+  }
+</style>

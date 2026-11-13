@@ -1,6 +1,6 @@
 ---
 interface Props {
-  items: { numeral: string; title: string; text: string }[];
+  items: { numeral: string; title?: string; text: string }[];
 }
 
 const { items } = Astro.props;
@@ -12,7 +12,7 @@ const { items } = Astro.props;
       <li>
         <span class="numeral">{item.numeral}.</span>
         <p>
-          <strong>{item.title}</strong> {item.text}
+          {item.title && <strong>{item.title}</strong>} {item.text}
         </p>
       </li>
     ))

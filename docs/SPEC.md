@@ -1,9 +1,31 @@
-# Site NOLI Paralegal — Especificação e textos (v2.0, revisada em 13/11/2026)
+# Site Noli Paralegal — Especificação e textos (v3.0, revisada em 18/11/2026)
 
 > Coloque este arquivo em `docs/SPEC.md` no repositório.
 > Trechos entre [COLCHETES] são informações a confirmar pelo Pedro antes de publicar.
 
 ---
+
+## 0. Revisão v3 (18/11/2026) — prevalece sobre o restante deste documento
+
+Fonte: `docs/redesign-2026-11-18.pdf` ("Redesign da Noli Paralegal"). Decisões do Pedro:
+adotar o visual do PDF, seguir o texto do PDF à risca, manter o aviso legal da §6 e entregar
+tudo menos analytics e anúncios.
+
+- **Identidade:** paleta e tipografia do PDF (ver `CLAUDE.md`). A §3 abaixo é histórica.
+- **Início:** textos das páginas 5 a 7 do PDF, na ordem: abertura, três públicos, serviços,
+  experiência, como trabalhamos, por demanda ou parceria, Grupo Noli e fecho. Sem tabela de
+  prazos e sem números de experiência no Início.
+- **Páginas novas:** `/para-contabilidades`, `/para-advocacia`, `/para-empresas`,
+  `/grupo-noli` e `/servicos/societario/alteracao-contratual` (página de campanha).
+- **Menu:** Serviços · Para quem (três páginas de público) · Como trabalhamos · Sobre a Noli ·
+  Contato, com botão "Solicitar proposta".
+- **Formulário "Conte sua demanda":** Nome, Seu perfil, Serviço de interesse, E-mail ou
+  WhatsApp, Empresa ou escritório (opcional), Tipo de atendimento e Descreva sua demanda.
+  Pré-seleção por `?perfil=&servico=&tipo=` (só identificadores). Sem caixa de
+  consentimento; link "Como usamos seus dados".
+- **Fotos:** a candidata do Unsplash (Kelly Sikkema) foi descartada por mostrar material de
+  produto de software em inglês. A foto da Paulista ficou em `/a-noli`.
+- **Fora do escopo:** analytics, eventos, consentimento de cookies, anúncios e plano de 90 dias.
 
 ## 1. Dados da empresa
 

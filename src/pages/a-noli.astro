@@ -1,11 +1,12 @@
 ---
 import Ornament from '../components/Ornament.astro';
+import PhotoBand from '../components/PhotoBand.astro';
 import RomanList from '../components/RomanList.astro';
 import { experience } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const intro =
-  'A NOLI Paralegal cuida do expediente societário, cartorial e cadastral de empresas e escritórios. Fica na Avenida Paulista, em São Paulo, e atende processos em todo o Brasil.';
+  'A Noli Paralegal cuida do expediente societário, cartorial e cadastral de empresas e escritórios. Fica na Avenida Paulista, em São Paulo, e atende processos em todo o Brasil.';
 
 const practices = [
   {
@@ -27,13 +28,13 @@ const practices = [
 ];
 ---
 
-<BaseLayout title="A NOLI · NOLI Paralegal" description={intro.split('. ')[0] + '.'}>
+<BaseLayout title="Sobre a Noli · Noli Paralegal" description={intro.split('. ')[0] + '.'}>
   <section class="section container">
-    <h1>Sobre a NOLI</h1>
+    <h1>Sobre a Noli</h1>
     <p class="intro">{intro}</p>
   </section>
 
-  <Ornament />
+  <PhotoBand />
 
   <section class="section container">
     <h2 class="section__title">Como trabalhamos</h2>

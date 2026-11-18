@@ -1,0 +1,101 @@
+---
+import { contactHref, deadlineNote } from '../../../data/site';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const cta = contactHref({ servico: 'societario' });
+---
+
+<BaseLayout
+  title="Alteração contratual na JUCESP · Noli Paralegal"
+  description="Alteração contratual na JUCESP. Consulte escopo, etapas e custos."
+>
+  <section class="hero container">
+    <span class="kicker">Societário e Juntas Comerciais</span>
+    <h1>Alteração contratual na JUCESP</h1>
+    <p class="lead">
+      Entrada e saída de sócios, aumento ou redução de capital, mudança de endereço, objeto
+      social ou administração. Consulte escopo, etapas e custos.
+    </p>
+    <div class="actions">
+      <a class="btn btn--solid" href={cta}>Solicitar orçamento</a>
+    </div>
+  </section>
+
+  <div class="container body">
+    <section class="block" aria-labelledby="inclui">
+      <h2 class="section__title" id="inclui">O que inclui</h2>
+      <ul class="checklist">
+        <li>Estruturação do ato de alteração</li>
+        <li>Revisão por advogado parceiro, quando exigida</li>
+        <li>Protocolo na JUCESP</li>
+        <li>Acompanhamento e resposta às exigências</li>
+        <li>Atualização do cadastro na Receita Federal</li>
+      </ul>
+    </section>
+
+    <section class="block" aria-labelledby="envia">
+      <h2 class="section__title" id="envia">O que você envia</h2>
+      <ul class="checklist">
+        <li>Contrato social vigente e última alteração</li>
+        <li>Documentos dos sócios</li>
+        <li>Dados da alteração pretendida</li>
+      </ul>
+    </section>
+
+    <section class="block" aria-labelledby="prazo">
+      <h2 class="section__title" id="prazo">Prazo</h2>
+      <p>
+        Prazo médio em São Paulo: <strong>5 dias úteis</strong>. {deadlineNote}
+      </p>
+    </section>
+
+    <section class="block" aria-labelledby="custos">
+      <h2 class="section__title" id="custos">Custos</h2>
+      <p>
+        A proposta traz o valor do serviço e, separadas, as taxas oficiais da Junta Comercial.
+      </p>
+      <div class="actions">
+        <a class="btn btn--solid" href={cta}>Solicitar orçamento</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-5);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero h1 {
+    max-width: 18em;
+  }
+
+  .body {
+    padding-bottom: var(--space-6);
+  }
+
+  .block {
+    max-width: 48rem;
+    padding-top: var(--space-5);
+  }
+
+  .block h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .checklist {
+    display: grid;
+    gap: var(--space-1);
+    padding-left: 1.25rem;
+    list-style: square;
+  }
+
+  .checklist li::marker {
+    color: var(--accent);
+  }
+
+  strong {
+    color: var(--navy);
+  }
+</style>

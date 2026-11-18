@@ -1,32 +1,34 @@
 :root {
-  /* Cores (SPEC §3) */
-  --navy: #13233f;
-  --navy-deep: #0b1729;
-  --ivory: #f7f3ea;
-  --paper: #fffdf8;
-  --ink: #1e1e1e;
-  --muted: #5b5e66;
-  --gold: #a8894e;
-  --rule: #d9d1bf;
+  /* Paleta do redesign (PDF de 18/11/2026). Os nomes antigos foram mantidos para
+     não reescrever os componentes: --navy é o azul profundo e --gold é a areia. */
+  --navy: #172d38; /* Azul profundo: ações primárias e títulos */
+  --navy-deep: #0f1f27; /* Rodapé e faixas de contraste */
+  --ivory: #f5f3ee; /* Marfim: fundo */
+  --paper: #fbfaf7; /* Blocos sobre o marfim */
+  --ink: #27343a; /* Grafite: texto */
+  --muted: #56636a; /* Texto secundário (AA sobre marfim) */
+  --gold: #c9a875; /* Areia: só detalhes e filetes, nunca texto sobre fundo claro */
+  --rule: #dad5ca; /* Linhas divisórias */
+  --accent: #52736f; /* Verde mineral: elementos secundários (4,69:1 sobre marfim) */
 
-  /* Dourado para texto em fundo claro: --gold reprova no AA sobre marfim (2,98:1) */
-  --gold-text: #7d6432;
+  /* Numerais e destaques em texto sobre fundo claro usam o verde mineral */
+  --gold-text: var(--accent);
 
   /* Tipografia */
-  --font-title: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-caps: 'Cormorant SC', 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-title: 'Manrope', 'Segoe UI', Arial, sans-serif;
+  --font-caps: var(--font-title);
+  --font-body: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
 
-  --text-body: clamp(1.125rem, 1.08rem + 0.2vw, 1.25rem);
+  --text-body: clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem);
   --text-small: 0.9375rem;
-  --text-h1: clamp(2.5rem, 1.9rem + 3vw, 4.25rem);
-  --text-h2: clamp(2rem, 1.7rem + 1.5vw, 3rem);
-  --text-h3: clamp(1.5rem, 1.4rem + 0.5vw, 1.75rem);
-  --tracking-caps: 0.14em;
-  --leading-body: 1.65;
-  --leading-title: 1.12;
+  --text-h1: clamp(2.25rem, 1.55rem + 3vw, 3.75rem);
+  --text-h2: clamp(1.75rem, 1.45rem + 1.25vw, 2.5rem);
+  --text-h3: clamp(1.25rem, 1.2rem + 0.3vw, 1.375rem);
+  --tracking-caps: 0;
+  --leading-body: 1.6;
+  --leading-title: 1.15;
 
-  /* Espaçamento */
+  /* Espaçamento: 8, 16, 24, 32, 48, 72 px */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -35,9 +37,9 @@
   --space-6: 4.5rem;
   --space-7: 7rem;
 
-  /* Estrutura */
-  --container: 72rem;
-  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  /* Estrutura: largura útil máxima de 1.200 px */
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --container: calc(75rem + 2 * var(--gutter));
   --radius: 2px;
-  --header-height: 5.5rem;
+  --header-height: 4.5rem;
 }

@@ -1,0 +1,67 @@
+---
+import AudiencePage from '../components/AudiencePage.astro';
+import { contactHref } from '../data/site';
+---
+
+<AudiencePage
+  title="Para escritórios de advocacia · Noli Paralegal"
+  description="Apoio documental, certidões, diligências administrativas e acompanhamento de registros. Seu escritório conduz a atividade jurídica."
+  heading="Para escritórios de advocacia"
+  intro="Apoio documental, certidões, diligências administrativas e acompanhamento de registros. Seu escritório conduz a atividade jurídica."
+  serviceIds={[
+    'certidoes-e-regularizacoes',
+    'imobiliario-e-cartorios',
+    'extrajudicial',
+    'documentos-estrangeiros',
+  ]}
+  cta={{ label: 'Solicitar apoio paralegal', href: contactHref({ perfil: 'advocacia' }) }}
+>
+  <section class="block" aria-labelledby="como-funciona">
+    <h2 class="section__title" id="como-funciona">Como funciona</h2>
+    <p>
+      Por demanda ou em parceria para fluxos repetidos, com responsabilidades documentadas e um
+      canal combinado para envio de documentos.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="quem-faz">
+    <h2 class="section__title" id="quem-faz">Quem faz o quê</h2>
+    <div class="split">
+      <div>
+        <h3>Noli Paralegal</h3>
+        <ul class="checklist">
+          <li>Levantamento e organização de documentos</li>
+          <li>Emissão de certidões</li>
+          <li>Protocolos administrativos</li>
+          <li>Acompanhamento até o registro</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Escritório</h3>
+        <ul class="checklist">
+          <li>Condução jurídica do caso</li>
+          <li>Peças e pareceres</li>
+          <li>Atos privativos de advogado</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</AudiencePage>
+
+<style>
+  .split {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .split h3 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-h3);
+  }
+
+  @media (min-width: 40rem) {
+    .split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,55 +1,99 @@
 ---
-import { company, serviceAreas } from '../data/site';
+import { engagementTypes, profiles, serviceAreas } from '../data/site';
 
 const endpoint: string = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? '';
-const successMessage = 'Mensagem enviada. Retornamos em até um dia útil.';
-const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou escreva para ${company.email}.`;
+
+// Textos do PDF de redesign (18/11/2026)
+const messages = {
+  sending: 'Enviando solicitação...',
+  success: 'Recebemos sua solicitação. A Noli entrará em contato pelo canal informado.',
+  error: 'Não foi possível enviar agora. Tente novamente ou fale com a Noli pelo WhatsApp.',
+  invalid: 'Revise este campo para continuar.',
+};
 ---
 
 <form
   class="contact-form"
   method="post"
   action={endpoint || undefined}
+  novalidate
   data-contact-form
-  data-success={successMessage}
-  data-error={errorMessage}
+  data-sending={messages.sending}
+  data-success={messages.success}
+  data-error={messages.error}
+  data-invalid={messages.invalid}
 >
-  <p class="contact-form__hint">* Campos obrigatórios</p>
+  <input type="hidden" name="_subject" value="Nova solicitação pelo site" />
 
   <div class="field">
-    <label for="nome">Nome *</label>
-    <input id="nome" name="nome" type="text" autocomplete="name" required />
-  </div>
-
-  <div class="field">
-    <label for="empresa">Empresa/escritório</label>
-    <input id="empresa" name="empresa" type="text" autocomplete="organization" />
+    <label for="nome">Nome</label>
+    <input id="nome" name="nome" type="text" autocomplete="name" maxlength="120" required />
+    <p class="field__error" id="nome-erro" hidden></p>
   </div>
 
   <div class="contact-form__row">
     <div class="field">
-      <label for="email">E-mail *</label>
-      <input id="email" name="email" type="email" autocomplete="email" required />
+      <label for="perfil">Seu perfil</label>
+      <select id="perfil" name="perfil" required>
+        <option value="" selected disabled>Selecione</option>
+        {profiles.map((item) => <option value={item.label} data-id={item.id}>{item.label}</option>)}
+      </select>
+      <p class="field__error" id="perfil-erro" hidden></p>
     </div>
 
     <div class="field">
-      <label for="telefone">Telefone</label>
-      <input id="telefone" name="telefone" type="tel" autocomplete="tel" />
+      <label for="servico">Serviço de interesse</label>
+      <select id="servico" name="servico" required>
+        <option value="" selected disabled>Selecione</option>
+        {
+          serviceAreas.map((area) => (
+            <option value={area.label} data-id={area.id}>
+              {area.label}
+            </option>
+          ))
+        }
+        <option value="Outro" data-id="outro">Outro</option>
+      </select>
+      <p class="field__error" id="servico-erro" hidden></p>
+    </div>
+  </div>
+
+  <div class="contact-form__row">
+    <div class="field">
+      <label for="contato">E-mail ou WhatsApp</label>
+      <input id="contato" name="contato" type="text" autocomplete="email" maxlength="120" required />
+      <p class="field__error" id="contato-erro" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="empresa">Empresa ou escritório <span class="optional">(opcional)</span></label>
+      <input id="empresa" name="empresa" type="text" autocomplete="organization" maxlength="120" />
     </div>
   </div>
 
   <div class="field">
-    <label for="area">Área *</label>
-    <select id="area" name="area" required>
-      <option value="" selected disabled></option>
-      {serviceAreas.map((area) => <option value={area.label}>{area.label}</option>)}
-      <option value="Outro">Outro</option>
+    <label for="tipo">Tipo de atendimento</label>
+    <select id="tipo" name="tipo" required>
+      <option value="" selected disabled>Selecione</option>
+      {engagementTypes.map((item) => <option value={item.label} data-id={item.id}>{item.label}</option>)}
     </select>
+    <p class="field__error" id="tipo-erro" hidden></p>
   </div>
 
   <div class="field">
-    <label for="mensagem">Mensagem *</label>
-    <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+    <label for="mensagem">Descreva sua demanda</label>
+    <p class="field__help" id="mensagem-ajuda">
+      Descreva o pedido em poucas linhas. Deixe documentos e dados pessoais de terceiros para a
+      próxima etapa.
+    </p>
+    <textarea
+      id="mensagem"
+      name="mensagem"
+      rows="6"
+      maxlength="2000"
+      required
+      aria-describedby="mensagem-ajuda"></textarea>
+    <p class="field__error" id="mensagem-erro" hidden></p>
   </div>
 
   <div class="contact-form__trap" aria-hidden="true">
@@ -57,16 +101,11 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
     <input id="gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
   </div>
 
-  <div class="consent">
-    <input id="privacidade" name="privacidade" type="checkbox" value="Aceito" required />
-    <label for="privacidade">
-      Li e concordo com a <a href="/privacidade" target="_blank" rel="noopener"
-        >Política de Privacidade</a
-      >
-    </label>
-  </div>
+  <p class="contact-form__privacy">
+    <a href="/privacidade">Como usamos seus dados</a>
+  </p>
 
-  <button class="btn btn--solid" type="submit">Enviar</button>
+  <button class="btn btn--solid" type="submit">Enviar solicitação</button>
 
   <p class="contact-form__status" role="status" tabindex="-1" data-form-status></p>
 </form>
@@ -75,37 +114,95 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
   const status = form?.querySelector<HTMLElement>('[data-form-status]');
   const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const TIMEOUT_MS = 15000;
+  let pending = false;
 
-  const show = (message: string, isError: boolean) => {
+  // Pré-seleção por identificadores conhecidos no endereço (?perfil=&servico=&tipo=)
+  const params = new URLSearchParams(window.location.search);
+  const preselect = (field: string, param: string) => {
+    const select = form?.querySelector<HTMLSelectElement>(`select[name="${field}"]`);
+    const id = params.get(param);
+    if (!select || !id) return;
+    const option = [...select.options].find((item) => item.dataset.id === id);
+    if (option) select.value = option.value;
+  };
+  preselect('perfil', 'perfil');
+  preselect('servico', 'servico');
+  preselect('tipo', 'tipo');
+
+  const show = (message: string, kind: 'info' | 'success' | 'error') => {
     if (!status) return;
     status.textContent = message;
-    status.classList.toggle('contact-form__status--error', isError);
-    status.focus();
+    status.dataset.kind = kind;
+    if (kind !== 'info') status.focus();
   };
+
+  const fields = () =>
+    [...(form?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      'input[required], select[required], textarea[required]',
+    ) ?? [])];
+
+  const markField = (field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+    const error = form?.querySelector<HTMLElement>(`#${field.id}-erro`);
+    const valid = field.value.trim() !== '' && field.checkValidity();
+    field.toggleAttribute('aria-invalid', !valid);
+    if (error) {
+      error.hidden = valid;
+      error.textContent = valid ? '' : (form?.dataset.invalid ?? '');
+    }
+    const describedBy = new Set((field.getAttribute('aria-describedby') ?? '').split(' ').filter(Boolean));
+    if (valid) describedBy.delete(`${field.id}-erro`);
+    else describedBy.add(`${field.id}-erro`);
+    if (describedBy.size) field.setAttribute('aria-describedby', [...describedBy].join(' '));
+    else field.removeAttribute('aria-describedby');
+    return valid;
+  };
+
+  fields().forEach((field) => {
+    field.addEventListener('blur', () => {
+      if (field.hasAttribute('aria-invalid') || field.value) markField(field);
+    });
+  });
 
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const endpoint = form.getAttribute('action');
-    const { success = '', error = '' } = form.dataset;
+    if (pending) return;
 
-    if (!endpoint) {
-      show(error, true);
+    const invalid = fields().filter((field) => !markField(field));
+    if (invalid.length) {
+      invalid[0].focus();
       return;
     }
 
+    const endpoint = form.getAttribute('action');
+    const { sending = '', success = '', error = '' } = form.dataset;
+    if (!endpoint) {
+      show(error, 'error');
+      return;
+    }
+
+    pending = true;
     if (button) button.disabled = true;
+    show(sending, 'info');
+
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
+        signal: controller.signal,
       });
       if (!response.ok) throw new Error(String(response.status));
       form.reset();
-      show(success, false);
+      show(success, 'success');
     } catch {
-      show(error, true);
+      // Os campos preenchidos são mantidos para nova tentativa
+      show(error, 'error');
     } finally {
+      window.clearTimeout(timer);
+      pending = false;
       if (button) button.disabled = false;
     }
   });
@@ -117,11 +214,6 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
     gap: var(--space-3);
   }
 
-  .contact-form__hint {
-    color: var(--muted);
-    font-size: var(--text-small);
-  }
-
   .contact-form__row {
     display: grid;
     gap: var(--space-3);
@@ -129,23 +221,35 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
 
   .field {
     display: grid;
-    gap: 0.25rem;
+    gap: 0.375rem;
     min-width: 0;
   }
 
   .field label {
     color: var(--navy);
-    font-weight: 500;
+    font-family: var(--font-title);
+    font-size: 0.9375rem;
+    font-weight: 700;
   }
 
-  input:not([type='checkbox']),
+  .optional {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .field__help {
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+
+  input:not([type='hidden']),
   select,
   textarea {
     width: 100%;
-    min-height: 2.875rem;
-    padding: 0.5rem 0.75rem;
+    min-height: 3rem;
+    padding: 0.625rem 0.75rem;
     border: 1px solid var(--muted);
-    border-radius: 0;
+    border-radius: var(--radius);
     background: var(--paper);
     color: var(--ink);
     font: inherit;
@@ -162,6 +266,17 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
     outline-offset: 1px;
   }
 
+  [aria-invalid] {
+    border-color: #a02b2b;
+    border-width: 2px;
+  }
+
+  .field__error {
+    color: #8a1c1c;
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+
   .contact-form__trap {
     position: absolute;
     left: -9999px;
@@ -170,23 +285,14 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
     overflow: hidden;
   }
 
-  .consent {
-    display: grid;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
-    gap: var(--space-1);
-    align-items: start;
-  }
-
-  .consent input {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin: 0.25rem 0 0;
-    accent-color: var(--navy);
+  .contact-form__privacy a {
+    color: var(--navy);
+    text-decoration-color: var(--gold);
   }
 
   .contact-form .btn {
     justify-self: start;
-    min-width: 10rem;
+    min-width: 12rem;
   }
 
   .contact-form .btn:disabled {
@@ -196,7 +302,7 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
 
   .contact-form__status {
     color: var(--navy);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .contact-form__status:empty {
@@ -207,7 +313,7 @@ const errorMessage = `Não foi possível enviar a mensagem. Tente novamente ou e
     outline: none;
   }
 
-  .contact-form__status--error {
+  .contact-form__status[data-kind='error'] {
     color: #8a1c1c;
   }
 

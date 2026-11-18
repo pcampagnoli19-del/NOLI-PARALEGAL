@@ -8,35 +8,34 @@ A especificação completa, com todos os textos, está em `docs/SPEC.md`.
 **Leia antes de qualquer tarefa.** Os textos da spec são definitivos: não reescreva,
 não resuma e não invente conteúdo novo sem pedir.
 
-## Direção visual (inegociável)
-Clássico e de elite, como uma banca tradicional. **Não** pode parecer startup ou empresa de tecnologia.
-- Tipografia serifada nos títulos, sóbria no corpo (ver SPEC §3)
-- Paleta: azul-marinho, marfim e um dourado discreto. Nada de gradiente, neon, glassmorphism
-- Muito espaço em branco, filetes finos, numeração romana, versaletes
+## Direção visual (v3, PDF "Redesign da Noli Paralegal" de 18/11/2026, em docs/)
+Profissional e acessível: linguagem direta, escopo claro e contato humano. Não pode parecer
+startup de tecnologia nem template de IA.
+- Paleta: azul profundo #172D38 (ações e títulos), grafite #27343A (texto), marfim #F5F3EE
+  (fundo), areia #C9A875 (só detalhes, nunca texto sobre fundo claro), verde mineral #52736F
+  (elementos secundários). Nada de gradiente, neon, glassmorphism
+- Tipografia: Manrope 600-700 nos títulos, Source Sans 3 no corpo e formulários
+- Grade de 12 colunas no desktop e 4 no celular, largura útil máxima de 1.200 px
+- Logo: geometria preservada; o quarto de círculo do logo é elemento gráfico recorrente
 - Sem ilustração 3D, sem ícones coloridos, sem emoji, sem animação chamativa
-- Cantos retos (no máximo 2px de arredondamento). Exceção: o quarto de círculo do logo,
-  usado como elemento gráfico recorrente
-- Também não pode parecer feito por IA. Ideia de design: tabelas com cara de cartório e o
-  quarto de círculo do logo (ver SPEC §3, "Revisão v2")
+- A marca nos textos é "Noli Paralegal"; o logo continua "NOLI"
 
-## Proibidos (cara de IA)
-- Sobretítulo em caixa-alta com filete acima de toda seção
+## Proibidos
 - Faixa de números ou contadores
 - Grade de cards idênticos com "Saiba mais"
 - Grade de "pilares" ou valores genéricos
 - Frases de efeito com antítese ou paralelismo ("X que não aparece. Y que aparece.")
 - Travessão (—) em texto corrido
-- Artigo antes de possessivo ("o nosso", "o seu")
-- Palavras: soluções, precisão, rigor, excelência, descomplicar, ágil, eficiente, padrão de execução
-- Chamada final em forma de pergunta retórica
+- Palavras: precisão, rigor, excelência, descomplicar, ágil, eficiente, padrão de execução
 - O fundador não aparece no site (nome, foto, trajetória). Nunca citar nomes de clientes,
-  nem de clientes atendidos pela equipe antes da NOLI
+  nem de clientes atendidos pela equipe antes da Noli
+- Textos do PDF v3 valem como estão, mesmo usando "soluções", "a sua" ou pergunta no fecho
 
 ## Stack
 - Astro (site estático, multipáginas) + TypeScript
 - CSS próprio com variáveis em `src/styles/tokens.css` (sem Tailwind, para manter controle fino do visual)
-- Fontes via Google Fonts, com `font-display: swap`
-- Formulário de contato: Formspree, ou rota serverless da Vercel enviando por Resend
+- Fontes via Google Fonts (Manrope, Source Sans 3), com `font-display: swap`
+- Formulário de contato: Formspree (variável PUBLIC_FORMSPREE_ENDPOINT na Vercel)
 - Deploy: Vercel, domínio `noliparalegal.com.br` (ver SPEC §7)
 
 ## Regras

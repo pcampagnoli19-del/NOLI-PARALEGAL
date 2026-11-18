@@ -4,6 +4,7 @@ import DeadlineTable from '../../components/DeadlineTable.astro';
 import LegalNotice from '../../components/LegalNotice.astro';
 import Ornament from '../../components/Ornament.astro';
 import { services, type Service } from '../../data/services';
+import { contactHref } from '../../data/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export const getStaticPaths = (() =>
@@ -21,10 +22,13 @@ const description = service.opening.split(/(?<=\.) /)[0];
 const hasComplement = service.detail || service.note || service.closing;
 ---
 
-<BaseLayout title={`${service.title} · NOLI Paralegal`} description={description}>
+<BaseLayout title={`${service.title} · Noli Paralegal`} description={description}>
   <section class="section container">
     <h1>{service.title}</h1>
     <p class="opening">{service.opening}</p>
+    <div class="actions">
+      <a class="btn btn--solid" href={contactHref({ servico: service.slug })}>Solicitar orçamento</a>
+    </div>
     <DeadlineTable area={service.slug} />
   </section>
 
@@ -49,6 +53,33 @@ const hasComplement = service.detail || service.note || service.closing;
         </div>
       )
     }
+
+    {
+      service.slug === 'societario' && (
+        <div class="complement">
+          <h2 class="section__title">O que depende do órgão</h2>
+          <p>
+            O prazo de análise, eventuais exigências e as taxas oficiais dependem da Junta
+            Comercial e dos demais órgãos envolvidos. A proposta indica o que é estimativa e o que
+            depende de terceiros.
+          </p>
+          <p class="more">
+            <a class="text-link" href="/servicos/societario/alteracao-contratual">
+              Alteração contratual na JUCESP
+            </a>
+          </p>
+        </div>
+      )
+    }
+
+    <p class="coverage">
+      Atuamos nas Juntas Comerciais em que já conduzimos processos. Nas demais, a
+      disponibilidade é sob consulta. <a href="/atuacao-nacional">Ver atuação nacional</a>
+    </p>
+
+    <div class="actions">
+      <a class="btn btn--solid" href={contactHref({ servico: service.slug })}>Solicitar orçamento</a>
+    </div>
 
     {
       service.showLegalNotice && (
@@ -87,12 +118,32 @@ const hasComplement = service.detail || service.note || service.closing;
 
   .complement strong {
     color: var(--navy);
-    font-weight: 500;
+    font-weight: 600;
+  }
+
+  .complement h2 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-h3);
+  }
+
+  .more {
+    margin-top: var(--space-2);
+  }
+
+  .coverage {
+    max-width: 44em;
+    margin-top: var(--space-4);
+    color: var(--muted);
+    font-size: var(--text-small);
+  }
+
+  .coverage a {
+    color: var(--navy);
   }
 
   .note {
     color: var(--muted);
-    font-size: 1.0625rem;
+    font-size: 1rem;
     font-style: italic;
   }
 

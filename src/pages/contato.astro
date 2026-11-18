@@ -3,13 +3,14 @@ import ContactForm from '../components/ContactForm.astro';
 import { company } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const intro = 'Descreva sua demanda. Retornamos em até um dia útil.';
+const intro =
+  'Conte o que você precisa resolver. Com essas informações, avaliamos o pedido e indicamos os próximos passos para preparar uma proposta.';
 ---
 
-<BaseLayout title="Contato · NOLI Paralegal" description={intro}>
+<BaseLayout title="Contato · Noli Paralegal" description={intro}>
   <section class="section container">
-    <h1>Fale com a NOLI</h1>
-    <p class="intro">{intro}</p>
+    <h1>Conte sua demanda</h1>
+    <p class="lead">{intro}</p>
 
     <div class="contact">
       <ContactForm />
@@ -29,15 +30,15 @@ const intro = 'Descreva sua demanda. Retornamos em até um dia útil.';
           </div>
           <div>
             <dt>Telefone</dt>
-            <dd><a class="lining" href={company.phoneHref}>{company.phone}</a></dd>
+            <dd><a href={company.phoneHref}>{company.phone}</a></dd>
           </div>
           <div>
             <dt>WhatsApp</dt>
-            <dd><a class="lining" href={company.whatsappHref}>{company.whatsapp}</a></dd>
+            <dd><a href={company.whatsappHref}>{company.whatsapp}</a></dd>
           </div>
           <div>
             <dt>Horário</dt>
-            <dd class="lining">{company.hours}</dd>
+            <dd>{company.hours}</dd>
           </div>
         </dl>
       </aside>
@@ -46,11 +47,6 @@ const intro = 'Descreva sua demanda. Retornamos em até um dia útil.';
 </BaseLayout>
 
 <style>
-  .intro {
-    max-width: 38em;
-    margin-top: var(--space-3);
-  }
-
   .contact {
     display: grid;
     gap: var(--space-5);
@@ -72,10 +68,10 @@ const intro = 'Descreva sua demanda. Retornamos em até um dia útil.';
   }
 
   dt {
-    color: var(--gold-text);
-    font-family: var(--font-caps);
-    font-weight: 600;
-    letter-spacing: var(--tracking-caps);
+    color: var(--accent);
+    font-family: var(--font-title);
+    font-size: 0.875rem;
+    font-weight: 700;
   }
 
   dd {

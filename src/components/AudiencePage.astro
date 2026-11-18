@@ -1,0 +1,106 @@
+---
+import { serviceAreas } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  intro: string;
+  serviceIds: string[];
+  cta: { label: string; href: string };
+}
+
+const { title, description, heading, intro, serviceIds, cta } = Astro.props;
+const services = serviceAreas.filter((area) => serviceIds.includes(area.id));
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero container">
+    <span class="kicker">Para quem</span>
+    <h1>{heading}</h1>
+    <p class="lead">{intro}</p>
+    <div class="actions">
+      <a class="btn btn--solid" href={cta.href}>{cta.label}</a>
+    </div>
+  </section>
+
+  <div class="container body">
+    <slot />
+
+    <section class="block" aria-labelledby="servicos-pedidos">
+      <h2 class="section__title" id="servicos-pedidos">Serviços mais pedidos</h2>
+      <ul class="service-list">
+        {
+          services.map((area) => (
+            <li>
+              <a href={area.href}>{area.label}.</a> {area.homeSummary}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="block closing" aria-labelledby="proximo-passo">
+      <h2 class="section__title" id="proximo-passo">Próximo passo</h2>
+      <p class="lead">
+        Conte o que você precisa resolver. Com essas informações, avaliamos o pedido e indicamos
+        os próximos passos para preparar uma proposta.
+      </p>
+      <div class="actions">
+        <a class="btn btn--solid" href={cta.href}>{cta.label}</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-5);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero h1 {
+    max-width: 18em;
+  }
+
+  .body {
+    padding-bottom: var(--space-6);
+  }
+
+  .body :global(.block) {
+    max-width: 48rem;
+    padding-top: var(--space-5);
+  }
+
+  .body :global(.block h2) {
+    margin-bottom: var(--space-3);
+  }
+
+  .body :global(.checklist) {
+    display: grid;
+    gap: var(--space-1);
+    padding-left: 1.25rem;
+    list-style: square;
+  }
+
+  .body :global(.checklist li::marker) {
+    color: var(--accent);
+  }
+
+  .service-list {
+    border-top: 1px solid var(--rule);
+  }
+
+  .service-list li {
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .service-list a {
+    color: var(--navy);
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-decoration-color: var(--gold);
+  }
+</style>

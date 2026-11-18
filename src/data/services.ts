@@ -88,7 +88,7 @@ export const services: Service[] = [
     slug: 'extrajudicial',
     title: 'Atos Extrajudiciais',
     opening:
-      'Inventários, divórcios e usucapiões que antes levavam anos no Judiciário podem, em muitos casos, ser resolvidos em cartório. Esses atos exigem a assistência de advogado. A NOLI conduz todo o expediente documental, em conjunto com advogados parceiros.',
+      'Inventários, divórcios e usucapiões que antes levavam anos no Judiciário podem, em muitos casos, ser resolvidos em cartório. Esses atos exigem a assistência de advogado. A Noli conduz todo o expediente documental, em conjunto com advogados parceiros.',
     listTitle: 'Atos em que atuamos',
     items: [
       'Inventário e partilha extrajudiciais',
@@ -97,7 +97,7 @@ export const services: Service[] = [
     ],
     examples: [0, 1, 2],
     detail: {
-      label: 'O papel da NOLI:',
+      label: 'O papel da Noli:',
       text: 'levantamento e organização de documentos, certidões, apuração de ITCMD, interlocução com o cartório e acompanhamento até o registro final.',
     },
     showLegalNotice: true,

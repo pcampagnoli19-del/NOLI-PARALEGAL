@@ -1,55 +1,96 @@
 ---
-import { company, mainNav } from '../data/site';
+import { audienceNav, company, mainNav } from '../data/site';
 import Logo from './Logo.astro';
 
 const currentPath = Astro.url.pathname.replace(/\.html$/, '');
 const isCurrent = (href: string) =>
   currentPath === href || currentPath.startsWith(`${href}/`);
+const audienceActive = audienceNav.some((link) => isCurrent(link.href));
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__logo" href="/" aria-label="NOLI Paralegal, página inicial">
+    <a class="site-header__logo" href="/" aria-label="Noli Paralegal, página inicial">
       <Logo />
     </a>
 
     <nav class="site-nav" aria-label="Menu principal">
       <ul>
         {
-          mainNav.map((link) => (
-            <li>
-              <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
-                {link.label}
-              </a>
-            </li>
-          ))
+          mainNav.map((link) =>
+            link.href === '#para-quem' ? (
+              <li class="site-nav__group">
+                <button
+                  class="site-nav__toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="menu-para-quem"
+                  data-submenu-toggle
+                  data-active={audienceActive ? 'true' : undefined}
+                >
+                  {link.label}
+                  <span class="site-nav__caret" aria-hidden="true" />
+                </button>
+                <ul class="site-nav__submenu" id="menu-para-quem" hidden>
+                  {audienceNav.map((item) => (
+                    <li>
+                      <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            ),
+          )
         }
       </ul>
     </nav>
 
-    <a class="btn site-header__cta" href="/contato">Solicitar proposta</a>
+    <a class="btn btn--solid site-header__cta" href="/contato">Solicitar proposta</a>
 
     <button class="menu-toggle" type="button" data-menu-open aria-haspopup="dialog">
-      Menu
+      Abrir menu
     </button>
   </div>
 
   <dialog class="drawer" data-menu aria-label="Menu">
     <div class="drawer__top">
       <Logo />
-      <button class="menu-toggle" type="button" data-menu-close>Fechar</button>
+      <button class="menu-toggle" type="button" data-menu-close>Fechar menu</button>
     </div>
 
     <nav aria-label="Menu principal, versão móvel">
       <ul class="drawer__nav">
         {
-          mainNav.map((link) => (
-            <li>
-              <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
-                {link.label}
-              </a>
-            </li>
-          ))
+          mainNav.map((link) =>
+            link.href === '#para-quem' ? (
+              <li>
+                <span class="drawer__group-label">{link.label}</span>
+                <ul class="drawer__subnav">
+                  {audienceNav.map((item) => (
+                    <li>
+                      <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            ),
+          )
         }
       </ul>
     </nav>
@@ -57,8 +98,8 @@ const isCurrent = (href: string) =>
     <a class="btn btn--solid drawer__cta" href="/contato">Solicitar proposta</a>
 
     <ul class="drawer__contact">
-      <li>Telefone: <a class="lining" href={company.phoneHref}>{company.phone}</a></li>
-      <li>WhatsApp: <a class="lining" href={company.whatsappHref}>{company.whatsapp}</a></li>
+      <li>Telefone: <a href={company.phoneHref}>{company.phone}</a></li>
+      <li>WhatsApp: <a href={company.whatsappHref}>{company.whatsapp}</a></li>
     </ul>
   </dialog>
 </header>
@@ -76,9 +117,36 @@ const isCurrent = (href: string) =>
     if (event.target === drawer) drawer.close();
   });
 
+  // Foco volta ao botão que abriu o menu
+  drawer?.addEventListener('close', () => openButton?.focus());
+
   // Ao voltar para a largura de desktop, a gaveta não deve continuar aberta
-  window.matchMedia('(min-width: 75rem)').addEventListener('change', (event) => {
-    if (event.matches) drawer?.close();
+  window.matchMedia('(min-width: 64rem)').addEventListener('change', (event) => {
+    if (event.matches && drawer?.open) drawer.close();
+  });
+
+  // Submenu "Para quem" no desktop
+  const toggle = document.querySelector<HTMLButtonElement>('[data-submenu-toggle]');
+  const submenu = document.getElementById('menu-para-quem');
+  const setOpen = (open: boolean) => {
+    if (!toggle || !submenu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    submenu.hidden = !open;
+  };
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    const group = toggle?.closest('.site-nav__group');
+    if (group && !group.contains(event.target as Node)) setOpen(false);
+  });
+  submenu?.addEventListener('focusout', (event) => {
+    const group = toggle?.closest('.site-nav__group');
+    if (group && !group.contains(event.relatedTarget as Node | null)) setOpen(false);
   });
 </script>
 
@@ -88,7 +156,7 @@ const isCurrent = (href: string) =>
     top: 0;
     z-index: 50;
     background: var(--ivory);
-    border-bottom: 1px solid var(--gold);
+    border-bottom: 1px solid var(--rule);
   }
 
   .site-header__inner {
@@ -108,31 +176,78 @@ const isCurrent = (href: string) =>
     display: none;
   }
 
-  .site-nav ul {
+  .site-nav > ul {
     display: flex;
-    gap: 1.25rem;
+    align-items: center;
+    gap: var(--space-3);
   }
 
   .site-nav a,
+  .site-nav__toggle,
   .drawer__nav a {
     color: var(--navy);
-    font-family: var(--font-caps);
+    font-family: var(--font-title);
     font-weight: 600;
-    letter-spacing: var(--tracking-caps);
     text-decoration: none;
   }
 
-  .site-nav a {
-    display: inline-block;
-    padding-block: 0.25rem;
-    border-bottom: 1px solid transparent;
-    font-size: 1.0625rem;
+  .site-nav a,
+  .site-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding-block: 0.375rem;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: none;
+    font-size: 1rem;
     white-space: nowrap;
+    cursor: pointer;
   }
 
   .site-nav a:hover,
-  .site-nav a[aria-current='page'] {
+  .site-nav a[aria-current='page'],
+  .site-nav__toggle:hover,
+  .site-nav__toggle[data-active] {
     border-bottom-color: var(--gold);
+  }
+
+  .site-nav__caret {
+    width: 0.4em;
+    height: 0.4em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.15em) rotate(45deg);
+  }
+
+  .site-nav__toggle[aria-expanded='true'] .site-nav__caret {
+    transform: translateY(0.1em) rotate(-135deg);
+  }
+
+  .site-nav__group {
+    position: relative;
+  }
+
+  .site-nav__submenu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: -1rem;
+    min-width: 17rem;
+    padding: 0.5rem 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 0 8px 24px rgb(23 45 56 / 0.12);
+  }
+
+  .site-nav__submenu a {
+    display: block;
+    padding: 0.625rem 1rem;
+    border: 0;
+  }
+
+  .site-nav__submenu a:hover,
+  .site-nav__submenu a[aria-current='page'] {
+    background: var(--ivory);
   }
 
   .site-header__cta {
@@ -143,13 +258,13 @@ const isCurrent = (href: string) =>
   .menu-toggle {
     min-height: 2.75rem;
     padding: 0.25rem 1rem;
-    border: 1px solid var(--navy);
+    border: 1.5px solid var(--navy);
+    border-radius: var(--radius);
     background: transparent;
     color: var(--navy);
-    font-family: var(--font-caps);
-    font-size: 1.0625rem;
-    font-weight: 600;
-    letter-spacing: var(--tracking-caps);
+    font-family: var(--font-title);
+    font-size: 0.9375rem;
+    font-weight: 700;
     cursor: pointer;
   }
 
@@ -161,7 +276,7 @@ const isCurrent = (href: string) =>
     margin: 0 0 0 auto;
     padding: var(--space-3) var(--gutter);
     border: 0;
-    border-left: 1px solid var(--gold);
+    border-left: 1px solid var(--rule);
     background: var(--ivory);
     color: var(--ink);
   }
@@ -173,27 +288,45 @@ const isCurrent = (href: string) =>
   }
 
   .drawer::backdrop {
-    background: rgb(11 23 41 / 0.6);
+    background: rgb(15 31 39 / 0.6);
   }
 
   .drawer__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-2);
   }
 
-  .drawer__nav li {
+  .drawer__nav > li {
     border-bottom: 1px solid var(--rule);
   }
 
   .drawer__nav a {
     display: block;
-    padding-block: 0.875rem;
-    font-size: 1.1875rem;
+    padding-block: 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .drawer__group-label {
+    display: block;
+    padding-top: 0.75rem;
+    color: var(--muted);
+    font-family: var(--font-title);
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .drawer__subnav {
+    padding-left: var(--space-2);
+  }
+
+  .drawer__subnav a {
+    font-size: 1.0625rem;
   }
 
   .drawer__nav a[aria-current='page'] {
-    color: var(--gold-text);
+    color: var(--accent);
   }
 
   .drawer__contact {
@@ -201,11 +334,10 @@ const isCurrent = (href: string) =>
     gap: var(--space-1);
     margin-top: auto;
     padding-top: var(--space-2);
-    border-top: 1px solid var(--gold);
+    border-top: 1px solid var(--rule);
   }
 
-  /* Menu completo + botão precisam de cerca de 1160px */
-  @media (min-width: 75rem) {
+  @media (min-width: 64rem) {
     .site-nav {
       display: block;
     }

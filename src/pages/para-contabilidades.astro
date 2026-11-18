@@ -1,0 +1,35 @@
+---
+import AudiencePage from '../components/AudiencePage.astro';
+import { contactHref } from '../data/site';
+---
+
+<AudiencePage
+  title="Para contabilidades · Noli Paralegal"
+  description="Delegue abertura, alteração, baixa e regularização das empresas da sua carteira, por demanda piloto ou em parceria mensal."
+  heading="Para contabilidades"
+  intro="Delegue abertura, alteração, baixa e regularização das empresas da sua carteira, sem perder a visibilidade de cada processo."
+  serviceIds={['societario', 'certidoes-e-regularizacoes', 'monitoramento']}
+  cta={{
+    label: 'Conversar sobre parceria',
+    href: contactHref({ perfil: 'contabilidade', tipo: 'recorrente' }),
+  }}
+>
+  <section class="block" aria-labelledby="como-comeca">
+    <h2 class="section__title" id="como-comeca">Como começa</h2>
+    <p>
+      Começamos por uma demanda piloto. Conforme o volume e a capacidade, a parceria pode evoluir
+      para atendimento mensal.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="proposta">
+    <h2 class="section__title" id="proposta">O que a proposta de parceria define</h2>
+    <ul class="checklist">
+      <li>Fila de demandas e ordem de atendimento</li>
+      <li>Tarefas incluídas no atendimento mensal</li>
+      <li>Como são tratados os excedentes</li>
+      <li>Taxas oficiais, cobradas à parte</li>
+      <li>Comunicação com o cliente final</li>
+    </ul>
+  </section>
+</AudiencePage>

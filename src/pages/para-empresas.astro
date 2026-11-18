@@ -1,0 +1,85 @@
+---
+import AudiencePage from '../components/AudiencePage.astro';
+import { contactHref } from '../data/site';
+
+const phases = [
+  {
+    title: 'Abrir a empresa',
+    text: 'Viabilidade, registro na Junta Comercial, CNPJ e inscrições estadual e municipal.',
+    href: '/servicos/societario',
+  },
+  {
+    title: 'Mudar o contrato social',
+    text: 'Entrada e saída de sócios, capital, endereço, objeto social e administração.',
+    href: '/servicos/societario/alteracao-contratual',
+  },
+  {
+    title: 'Regularizar pendências',
+    text: 'Certidões, cadastro na Receita Federal, nas secretarias da Fazenda e nas prefeituras.',
+    href: '/servicos/certidoes-e-regularizacoes',
+  },
+  {
+    title: 'Encerrar a empresa',
+    text: 'Baixa, dissolução e encerramento nos órgãos de registro.',
+    href: '/servicos/societario',
+  },
+];
+---
+
+<AudiencePage
+  title="Para empresas e empresários · Noli Paralegal"
+  description="Abrir, alterar, regularizar ou encerrar a empresa, com proposta própria para cada demanda, taxas oficiais separadas e prazo estimado."
+  heading="Para empresas e empresários"
+  intro="Vai abrir uma empresa, mudar o contrato social ou resolver uma pendência? Conte sua situação. A Noli ajuda a identificar as etapas administrativas e acompanha o que for contratado."
+  serviceIds={['societario', 'certidoes-e-regularizacoes', 'imobiliario-e-cartorios']}
+  cta={{ label: 'Descrever minha demanda', href: contactHref({ perfil: 'empresa' }) }}
+>
+  <section class="block" aria-labelledby="fases">
+    <h2 class="section__title" id="fases">Em que fase está sua empresa</h2>
+    <ul class="phases">
+      {
+        phases.map((phase) => (
+          <li>
+            <h3>
+              <a href={phase.href}>{phase.title}</a>
+            </h3>
+            <p>{phase.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="escopo">
+    <h2 class="section__title" id="escopo">Escopo</h2>
+    <p>
+      Cada demanda recebe proposta própria, com escopo, taxas oficiais separadas e prazo
+      estimado conforme a documentação e o órgão.
+    </p>
+  </section>
+</AudiencePage>
+
+<style>
+  .phases {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .phases li {
+    padding-left: var(--space-2);
+    border-left: 2px solid var(--gold);
+  }
+
+  .phases h3 {
+    font-size: 1.125rem;
+  }
+
+  .phases a {
+    color: var(--navy);
+    text-decoration-color: var(--gold);
+  }
+
+  .phases p {
+    margin-top: 0.25rem;
+  }
+</style>
